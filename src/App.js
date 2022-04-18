@@ -1,25 +1,41 @@
-import logo from './logo.svg';
 import './App.css';
+import {
+  BrowserRouter as Router,
+  Route,
+	Routes,
+} from "react-router-dom";
+import Login from './Components/Auth/Login/Login';
+import Registration from './Components/Auth/Registration/Registration';
+import Main from './Components/Main/Main';
+import { Provider } from 'react-redux';
+import { store } from './Redux/store'
+import { PrivateRoute } from './HOC/PrivateRoute';
+import { connect } from 'react-redux';
 
-function App() {
+const App = (props) => {
+	return (
+		<Routes>
+			<Route exact path='/' element={<PrivateRoute isAuth={props.isAuth} component={Main} />} />
+			<Route exact path="/login" element={<Login />} />
+			<Route exact path="/registration" element={<Registration />} />
+		</Routes>
+	)
+}
+
+const mapStateToProps = (state) => ({
+	isAuth: state.auth.isAuth
+})
+
+const AppContainer = connect(mapStateToProps, {})(App)
+
+const SmartPoselokApp = (props) => {
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
+    <Router>
+			<Provider store={store}>
+      	<AppContainer />
+			</Provider>
+		</Router>
   );
 }
 
-export default App;
+export default SmartPoselokApp;
