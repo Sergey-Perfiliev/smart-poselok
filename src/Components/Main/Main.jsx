@@ -1,11 +1,12 @@
 import React from 'react'
 import { connect } from 'react-redux'
+import Header from '../Header/Header'
+import { signOut } from '../../Redux/auth-reducer'
 
 const Main = (props) => {
 	return (
 		<>
-			<div>{props.email}</div>
-			<div>{props.password}</div>
+			<Header email={props.email} signOut={props.signOut} />
 		</>
 	)
 }
@@ -15,4 +16,4 @@ const mapStateToProps = (state) => ({
 	password: state.auth.password,
 })
 
-export default connect(mapStateToProps, {})(Main)
+export default connect(mapStateToProps, {signOut})(Main)

@@ -1,4 +1,4 @@
-import './App.css';
+import './App.scss';
 import {
   BrowserRouter as Router,
   Route,
@@ -11,6 +11,7 @@ import { Provider } from 'react-redux';
 import { store } from './Redux/store'
 import { PrivateRoute } from './HOC/PrivateRoute';
 import { connect } from 'react-redux';
+import 'normalize.css';
 
 const App = (props) => {
 	return (

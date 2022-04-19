@@ -32,4 +32,10 @@ export const login = (email, password) => {
 	}
 }
 
+export const signOut = () => {
+	return async (dispatch) => {
+		dispatch(setAuthUserData(false, false, false))
+	}
+}
+
 export default AuthReducer

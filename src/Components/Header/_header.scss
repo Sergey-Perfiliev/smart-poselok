@@ -1,0 +1,140 @@
+@import '../../colors';
+@import '../../media-queries';
+
+%align-center {
+	display: flex;
+	align-items: center;
+}
+
+.dropdown-caret {
+	display: inline-block;
+	width: 0;
+	height: 0;
+	vertical-align: middle;
+	content: "";
+	border-style: solid;
+	border-width: 4px 4px 0;
+	border-right-color: transparent;
+	border-bottom-color: transparent;
+	border-left-color: transparent;
+
+	margin-left: 8px;
+
+	&:hover {
+		opacity: .5;
+	}
+}
+
+.header {
+	background-color: $light;
+	height: 60px;
+	display: flex;
+	align-items: center;
+	justify-content: space-between;
+	padding: 0.5rem calc((100vw - 1200px) / 2);
+	z-index: 10;
+
+	svg {
+		cursor: pointer;
+	}
+
+	&__comp-info {
+		display: flex;
+		@extend %align-center;
+	}
+
+	&__logo {
+		margin-left: 24px;
+		color: $primary;
+		cursor: pointer;
+		font-size: 2rem;
+		@extend %align-center;
+
+		&:hover {
+			color: $secondary;
+			transition: all .3s ease;
+		}
+	}
+
+	&__icon-container {
+		position: relative;
+	}
+
+	&__icon-info {
+		cursor: pointer;
+		display: flex;
+		align-items: center;
+	}
+
+	&__icon-btn {
+		// padding: 16px;
+		font-size: 1.3rem;
+		// border-radius: 50%;
+		background-color: $primary;
+		color: $light;
+
+		&:hover {
+			background-color: $secondary;
+			transition: all .3s ease;
+		}
+	}
+}
+
+.profile-container {
+	position: absolute;
+	top: 40px;
+	right: -10px;
+	border-radius: 12px;
+	border: 1px solid grey;
+	overflow: hidden;
+
+	&>div {
+		width: 200px;
+	}
+
+	.profile-container-group {
+		padding: 8px 16px;
+		background-color: $light;
+		border-bottom: 1px solid grey;
+	}
+
+	.profile-container-group:last-child {
+		border-bottom: none;
+	}
+
+	.profile-info {
+		span {
+			font-weight: 600;
+		}
+	}
+
+	.profile-actions {
+		padding-left: 0;
+		padding-right: 0;
+
+		.btn-profile {
+			padding: 8px 12px;
+			text-align: start;
+			width: 100%;
+			background-color: $light;
+
+			&:hover {
+				background-color: $primary;
+				transition: .3s all ease;
+			} 
+		}
+	}
+
+	// &::before {
+	// 	position: absolute;
+  //   display: block;
+  //   content: "";
+
+	// 	border: 8px solid transparent;
+  //   border-bottom-color: $light;
+
+	// 	top: -16px;
+  //   right: 9px;
+  //   left: auto;
+	// }
+}
