@@ -13,7 +13,7 @@ const Header = ({ email, signOut }) => {
 	})
 
 	const closeProfileMenu = (e) => {
-		if (!e.target.closest('.profile-container') && !e.target.closest('.header__icon-info'))
+		if (!e.target.closest('.profile-menu-container') && !e.target.closest('.header__icon-info'))
 			setShowProfile(false)
 	}
 
@@ -31,21 +31,20 @@ const Header = ({ email, signOut }) => {
 				</div>
 				{
 					showProfile && (
-						<div className='profile-container'>
-							<div className='profile'>
-								<div className='profile-container-group profile-info'>
+						<div className='profile-menu-container'>
+							<div className='profile-menu'>
+								<div className='profile-menu-container-group profile-menu-info'>
 									Sign in as
 									<span> {email}</span>
 								</div>
-								<div className='profile-container-group profile-actions'>
-									<button className='btn btn-profile' onClick={() => signOut()}>Sign out</button>
+								<div className='profile-menu-container-group profile-menu-actions'>
+									<button className='btn btn-menu-profile' onClick={() => signOut()}>Sign out</button>
 								</div>
 							</div>
 						</div>
 					)
 				}
 			</div>
-
 		</header>
 	)
 }

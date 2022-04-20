@@ -80,7 +80,7 @@
 	}
 }
 
-.profile-container {
+.profile-menu-container {
 	position: absolute;
 	top: 40px;
 	right: -10px;
@@ -92,27 +92,27 @@
 		width: 200px;
 	}
 
-	.profile-container-group {
+	&-group {
 		padding: 8px 16px;
 		background-color: $light;
 		border-bottom: 1px solid grey;
 	}
 
-	.profile-container-group:last-child {
+	&-group:last-child {
 		border-bottom: none;
 	}
 
-	.profile-info {
+	.profile-menu-info {
 		span {
 			font-weight: 600;
 		}
 	}
 
-	.profile-actions {
+	.profile-menu-actions {
 		padding-left: 0;
 		padding-right: 0;
 
-		.btn-profile {
+		.btn-menu-profile {
 			padding: 8px 12px;
 			text-align: start;
 			width: 100%;
