@@ -8,7 +8,7 @@ const Main = (props) => {
 	return (
 		<>
 			<Header email={props.email} signOut={props.signOut} />
-			<Profile email={props.email} neighbours={props.neighbours} />
+			<Profile email={props.email} neighbours={props.neighbours} vote={props.vote} />
 		</>
 	)
 }
@@ -16,7 +16,8 @@ const Main = (props) => {
 const mapStateToProps = (state) => ({
 	email: state.auth.email,
 	password: state.auth.password,
-	neighbours: state.profile.neighbours
+	neighbours: state.profile.neighbours,
+	vote: state.profile.currentVote
 })
 
 export default connect(mapStateToProps, {signOut})(Main)

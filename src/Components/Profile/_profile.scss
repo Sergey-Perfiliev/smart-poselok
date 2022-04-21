@@ -67,12 +67,25 @@
 		}
 	}
 
-	&__friendly-link {
-		padding: 24px 32px 12px 32px;
+	&__friendly-link, &__vote {
 		background-color: white;
 		width: 440px;
-		height: 120px;
 		border-radius: 8px;
+		
+		&-title {
+			margin: 0;
+			padding: 0;
+			
+			font-style: normal;
+			font-weight: 400;
+			font-size: 24px;
+			line-height: 29px;
+		}
+	}
+	
+	&__friendly-link {
+		padding: 24px 32px 12px 32px;
+		height: 120px;
 
 		&>div {
 			margin-top: 12px;
@@ -80,15 +93,7 @@
 			align-items: center;
 		}
 
-		&-title {
-			margin: 0;
-			padding: 0;
-
-			font-style: normal;
-			font-weight: 400;
-			font-size: 24px;
-			line-height: 29px;
-		}
+		&-title {}
 
 		&-url {
 			font-style: normal;
@@ -124,6 +129,11 @@
 				transition: .3s all ease;
 			}
 		}
+	}
+
+	&__vote {
+		margin-top: 32px;
+		padding: 24px 32px;
 	}
 
 	&__neighbours {

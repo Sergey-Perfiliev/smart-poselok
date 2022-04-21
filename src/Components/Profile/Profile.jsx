@@ -1,7 +1,8 @@
 import React from 'react'
+import Vote from '../Vote/Vote'
 import './_profile.scss'
 
-const Profile = ({ email, neighbours }) => {
+const Profile = ({ email, neighbours, vote }) => {
 	const neighboursList = neighbours && neighbours.map((neighbour) =>
 		<NeighbourEl neighbour={neighbour} key={neighbour.id} />
 	)
@@ -29,11 +30,19 @@ const Profile = ({ email, neighbours }) => {
 						<button className='btn btn-link'>Copy</button>
 					</div>
 				</div>
+				{
+					vote.id && <div className='profile__vote'>
+						<h3 className='profile__vote-title'>Current vote</h3>
+						<Vote vote={vote} />
+					</div>
+				}
 			</div>
 
-			<div className='profile__neighbours'>
-				{neighboursList}
-			</div>
+			{
+				neighbours.length > 0 ? <div className='profile__neighbours'>
+					{neighboursList}
+				</div> : <div>У вас нет соседей</div>
+			}
 		</div>
 	)
 }

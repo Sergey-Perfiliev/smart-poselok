@@ -7,7 +7,16 @@ let initialState = {
 		{ id: 151, name: "Ivan" },
 		{ id: 270, name: "Sergei" },
 		{ id: 986, name: "Antony" },
-	]
+	],
+	currentVote: {
+		id: 1,
+		title: 'Уборка территории',
+		options: [
+			'Да',
+			'Нет',
+			'Воздержусь',
+		]
+	}
 }
 
 const ProfileReducer = (state = initialState, action) => {
