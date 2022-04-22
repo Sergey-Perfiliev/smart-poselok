@@ -7,6 +7,7 @@ export let initialState = {
 	email: null,
 	password: null,
 	isAuth: false,
+	role: ['representative'],
 	loading: false,
 	error: null
 }
