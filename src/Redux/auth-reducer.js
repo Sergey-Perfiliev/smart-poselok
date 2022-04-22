@@ -1,10 +1,14 @@
+import axios from "axios"
+
 // action.types
 const SET_AUTH_USER_DATA = 'SET_AUTH_USER_DATA'
 
-let initialState = {
+export let initialState = {
 	email: null,
 	password: null,
 	isAuth: false,
+	loading: false,
+	error: null
 }
 
 // reducer
@@ -22,13 +26,21 @@ const AuthReducer = (state = initialState, action) => {
 }
 
 // action creators
-const setAuthUserData = (email, password, isAuth) => ({
+export const setAuthUserData = (email, password, isAuth) => ({
 	type: SET_AUTH_USER_DATA, payload: {email, password, isAuth}
 })
 
 export const login = (email, password) => {
 	return async (dispatch) => {
 		dispatch(setAuthUserData(email, password, true))
+	}
+}
+
+export const loginTest = (user) => {
+	return async (dispatch) => {
+		dispatch(setAuthUserData(user.email, user.password))
+		const res = await axios.post('/user/login', user)
+		return res.data
 	}
 }
 
