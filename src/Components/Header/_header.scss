@@ -26,28 +26,29 @@
 }
 
 .header {
-	background-color: $light;
+	background-color: white;
 	height: 60px;
 	display: flex;
 	align-items: center;
 	justify-content: space-between;
 	padding: 0.5rem calc((100vw - 1200px) / 2);
 	z-index: 10;
-
+	
 	svg {
 		cursor: pointer;
 	}
-
+	
 	&__comp-info {
 		display: flex;
 		@extend %align-center;
 	}
-
+	
 	&__logo {
 		margin-left: 24px;
 		color: $primary;
 		cursor: pointer;
 		font-size: 2rem;
+		text-decoration: none;
 		@extend %align-center;
 
 		&:hover {

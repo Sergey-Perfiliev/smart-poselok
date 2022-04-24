@@ -10,7 +10,7 @@ const ProfileInfo = ({email}) => {
 				<div>
 					<h2 className='profile__info-name'>{email}</h2><span>(Emoji)</span>
 				</div>
-				<h4 className='profile__info-payment'>Last payment: 19.04.2022</h4>
+				<h4 className='profile__info-payment'>Последняя оплата: 19.04.2022</h4>
 			</div>
 		</div>
 	)

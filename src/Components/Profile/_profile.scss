@@ -2,13 +2,8 @@
 @import '../../media-queries';
 
 .profile {
-	border-top: 1px solid white;
-	background-color: $light;
-	padding: 1.5rem calc((100vw - 1200px) / 2 + 24px);
-	z-index: 10;
 	display: flex;
 	justify-content: space-between;
-	height: calc(100vh - 125px);
 	
 	&__info {
 		margin-bottom: 32px;
@@ -134,6 +129,32 @@
 	&__vote {
 		margin-top: 32px;
 		padding: 24px 32px;
+
+		&-header {
+			display: flex;
+			align-items: center;
+			flex-wrap: nowrap;
+
+			&>h3 {
+				width: 100%;
+			}
+		}
+
+		a {
+			width: 90px;
+			font-size: 12px;
+			padding: 4px;
+			border-radius: 4px;
+			text-decoration: none;
+			color: black;
+			background-color: $primary;
+			color: #FFFFFF;
+
+			&:hover {
+				background: $secondary;
+				transition: .3s all ease;
+			}
+		}
 	}
 
 	&__neighbours {

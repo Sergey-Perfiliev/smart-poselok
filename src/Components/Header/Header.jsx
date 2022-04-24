@@ -1,4 +1,5 @@
 import React, { useState, useEffect } from 'react'
+import { Link } from 'react-router-dom';
 import { ReactComponent as ReactLogo } from '../../Assets/house.svg';
 import './_header.scss'
 
@@ -20,8 +21,10 @@ const Header = ({ email, signOut }) => {
 	return (
 		<header className='header'>
 			<div className='header__comp-info'>
-				<ReactLogo width='60px' height='60px' />
-				<h2 className='header__logo'>Smart Poselok</h2>
+				<Link to={'/'}>
+					<ReactLogo width='60px' height='60px' />
+				</Link>
+				<Link className='header__logo' to={'/'}>Smart Poselok</Link>
 			</div>
 
 			<div className='header__icon-container'>
@@ -34,11 +37,11 @@ const Header = ({ email, signOut }) => {
 						<div className='profile-menu-container'>
 							<div className='profile-menu'>
 								<div className='profile-menu-container-group profile-menu-info'>
-									Sign in as
+									Авторизовались как
 									<span> {email}</span>
 								</div>
 								<div className='profile-menu-container-group profile-menu-actions'>
-									<button className='btn btn-menu-profile' onClick={() => signOut()}>Sign out</button>
+									<button className='btn btn-menu-profile' onClick={() => signOut()}>Выйти</button>
 								</div>
 							</div>
 						</div>

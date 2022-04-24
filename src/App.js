@@ -12,11 +12,13 @@ import { store } from './Redux/store'
 import { PrivateRoute } from './HOC/PrivateRoute';
 import { connect } from 'react-redux';
 import 'normalize.css';
+import Votes from './Components/Votes/Votes';
 
 const App = (props) => {
 	return (
 		<Routes>
 			<Route exact path='/' element={<PrivateRoute isAuth={props.isAuth} component={Main} />} />
+			<Route exact path='/votes' element={<PrivateRoute isAuth={props.isAuth} component={Votes} />} />
 			<Route exact path="/login" element={<Login />} />
 			<Route exact path="/registration" element={<Registration />} />
 		</Routes>

@@ -1,28 +1,32 @@
 import React from 'react'
-import ProfileFriendlyLink from './ProfileFriendlyLink'
-import ProfileInfo from './ProfileInfo'
-import ProfileNeighbours from './ProfileNeighbours'
-import ProfileProcessing from './ProfileProcessing'
-import ProfileVote from './ProfileVote'
+import ProfileProcessing from './Roles/ProfileProcessing'
 import './_profile.scss'
+import ProfileRepresentative from './Roles/ProfileRepresentative'
+import ProfileResident from './Roles/ProfileResident'
 
 const Profile = ({ email, neighbours, vote, role }) => {
+	let voteEnabled = role.some(r => r === 'representative')
+
 	return (
 		<div className='profile'>
 			{
 				role.some(role => role === 'processing') ?
 					<ProfileProcessing></ProfileProcessing> :
-					(
-						<>
-							<div>
-								<ProfileInfo email={email} />
-								<ProfileFriendlyLink />
-								<ProfileVote vote={vote} />
-							</div>
-
-							<ProfileNeighbours neighbours={neighbours} />
-						</>
-					)
+					role.some(role => role === 'resident') ?
+						<ProfileResident
+							email={email}
+							neighbours={neighbours}
+							enabled={voteEnabled}
+							vote={vote}>
+						</ProfileResident> :
+						role.some(role => role === 'representative') ?
+							<ProfileRepresentative
+								email={email}
+								neighbours={neighbours}
+								enabled={voteEnabled}
+								vote={vote}>
+							</ProfileRepresentative> :
+							<></>
 			}
 		</div>
 	)

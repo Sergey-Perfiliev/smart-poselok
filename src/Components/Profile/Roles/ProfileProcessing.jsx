@@ -1,5 +1,5 @@
 import React from 'react'
-import Loader from '../Common/Loader'
+import Loader from '../../Common/Loader'
 
 const ProfileProcessing = () => {
 	return (

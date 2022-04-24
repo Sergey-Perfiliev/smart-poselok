@@ -1,5 +1,16 @@
+@import './colors';
+@import './media-queries';
+
 .btn {
 	cursor: pointer;
 	border: none;
 	outline: none;
+}
+
+.profile, .votes {
+	border-top: 1px solid white;
+	background-color: $light;
+	padding: 1.5rem calc((100vw - 1200px) / 2 + 24px);
+	z-index: 10;
+	height: calc(100vh - 125px);
 }
