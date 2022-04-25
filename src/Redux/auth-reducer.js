@@ -1,13 +1,18 @@
 import axios from "axios"
+import { authApi } from "../API/api"
+import { jwtDecode } from "../Helpers/JwtDecoder"
 
 // action.types
 const SET_AUTH_USER_DATA = 'SET_AUTH_USER_DATA'
 
+//resident, representative, admin, owner
+
 export let initialState = {
 	email: null,
-	password: null,
+	userId: null,
+	token: null,
 	isAuth: false,
-	role: ['representative'],
+	roles: ['representative'],
 	loading: false,
 	error: null
 }
@@ -27,13 +32,35 @@ const AuthReducer = (state = initialState, action) => {
 }
 
 // action creators
-export const setAuthUserData = (email, password, isAuth) => ({
-	type: SET_AUTH_USER_DATA, payload: {email, password, isAuth}
+export const setAuthUserData = (email, userId, token, isAuth) => ({
+	type: SET_AUTH_USER_DATA, payload: {email, userId, token, isAuth}
 })
 
 export const login = (email, password) => {
 	return async (dispatch) => {
-		dispatch(setAuthUserData(email, password, true))
+		// let response = await authApi.login(email, password) 
+
+		// if (response.status === 200) {
+		// 	dispatch(setAuthUserData(email, response.data.userId, response.data.token, true))
+		// }
+		// if (response.status === 4**)
+		//  dispatch(setError(response.errorMessage))
+		//
+
+		let token = 'eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJ1c2VyX2lkIjo0LCJyb2xlcyI6W10sImV4cCI6MTY4MjM3ODUxNn0.EijWC87tbA3hvQjyxWNNAjBhdS7_5zd2d-'
+		let authTokenData = jwtDecode(token)
+		console.log(authTokenData);
+		dispatch(setAuthUserData(email, authTokenData.user_id, token, true))
+	}
+}
+
+export const register = (email, firstName, secondName, patronymic, password) => {
+	return async (dispatch) => {
+		let response = await authApi.register(email, firstName, secondName, patronymic, password)
+		
+		if (response.status === 200) {
+			dispatch(login(email, password))
+		}
 	}
 }
 
