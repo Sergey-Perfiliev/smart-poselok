@@ -7,10 +7,22 @@
 	outline: none;
 }
 
-.profile, .votes {
+.profile, .votes, .villagers {
 	border-top: 1px solid white;
 	background-color: $light;
 	padding: 1.5rem calc((100vw - 1200px) / 2 + 24px);
 	z-index: 10;
 	height: calc(100vh - 125px);
+}
+
+input {
+	outline: none;
+}
+
+a {
+	text-decoration: none;
+}
+
+p {
+	margin: 0;
 }

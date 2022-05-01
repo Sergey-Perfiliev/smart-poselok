@@ -4,12 +4,25 @@
 .profile {
 	display: flex;
 	justify-content: space-between;
+
+	&-villager-container {
+		max-width: 500px;
+	}
+
+	&-admin-container {
+		max-width: 440px;
+		width: 100%;
+	}
+
+	&-admin-panel {
+		max-width: 320px;
+		width: 100%;
+	}
 	
 	&__info {
 		margin-bottom: 32px;
 		padding: 16px 32px;
 		background-color: white;
-		width: 440px;
 		height: 180px;
 		border-radius: 8px;
 		display: flex;
@@ -24,11 +37,14 @@
 		}
 
 		&-content {
-			margin-top: 16px;
 			margin-left: 24px;
 			display: flex;
 			flex-direction: column;
 			justify-content: center;
+
+			mt-16 {
+				margin-top: 16px;
+			}
 
 			&>div {
 				display: flex;
@@ -62,10 +78,10 @@
 		}
 	}
 
-	&__friendly-link, &__vote {
+	&__friendly-link, &__vote, &__new-vote, &__view-villagers {
 		background-color: white;
-		width: 440px;
-		border-radius: 8px;
+		border-radius: 8px;		
+		padding: 24px 32px;
 		
 		&-title {
 			margin: 0;
@@ -79,11 +95,8 @@
 	}
 	
 	&__friendly-link {
-		padding: 24px 32px 12px 32px;
-		height: 120px;
-
 		&>div {
-			margin-top: 12px;
+			margin-top: 24px;
 			display: flex;
 			align-items: center;
 		}
@@ -107,22 +120,8 @@
 			text-overflow: ellipsis;
 		}
 
-		.btn-link {
+		.btn-friendly-link {	
 			margin-left: 24px;
-			padding: 8px 12px;
-			font-style: normal;
-			font-weight: 400;
-			font-size: 18px;
-			line-height: 21px;
-
-			color: #FFFFFF;
-			background: $primary;
-			border-radius: 12px;
-			
-			&:hover {
-				background: $secondary;
-				transition: .3s all ease;
-			}
 		}
 	}
 
@@ -145,7 +144,6 @@
 			font-size: 12px;
 			padding: 4px;
 			border-radius: 4px;
-			text-decoration: none;
 			color: black;
 			background-color: $primary;
 			color: #FFFFFF;
@@ -158,7 +156,8 @@
 	}
 
 	&__neighbours {
-		width: 320px;
+		max-width: 320px;
+		width: 100%;
 		height: 280px;
 		background-color: #FFFFFF;
 		border-radius: 8px;
@@ -198,6 +197,10 @@
 			}
 		}
 	}
+
+	&__new-vote {
+		margin-bottom: 32px;
+	}
 }
 
 // scroll bar; neighbours section
@@ -219,6 +222,31 @@
 
 .profile__neighbours::-webkit-scrollbar-thumb:hover {
 	background-color: #a0a0a0;
+}
+
+.btn-profile {
+	padding: 8px 12px;
+	font-style: normal;
+	font-weight: 400;
+	font-size: 18px;
+	line-height: 21px;
+
+	color: #FFFFFF;
+	background: $primary;
+	border-radius: 12px;
+	
+	&:hover {
+		background: $secondary;
+		transition: .3s all ease;
+	}
+}
+
+.btn-new-vote, .btn-view-villagers {
+	margin-top: 12px;
+}
+
+.profile__view-villagers-title {
+	margin-bottom: 24px;
 }
 
 // roles

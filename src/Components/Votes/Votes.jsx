@@ -11,7 +11,7 @@ const Votes = (props) => {
 			vote={vote}
 			isColorChange={true}
 			enabled={false}
-			key={vote.id * Math.random()}
+			key={vote.id}
 		/>
 	)
 

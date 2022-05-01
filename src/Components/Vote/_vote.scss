@@ -3,10 +3,17 @@
 
 .vote {
 	margin-top: 24px;
-	background-color: $light;
 	border-radius: 4px;
 	padding: 16px 32px;
 	max-width: 380px;
+
+	&-enabled {
+		background-color: $light;
+	}
+
+	&-disabled {
+		background-color: #f3f3f3;
+	}
 
 	&-white {
 		background-color: white;

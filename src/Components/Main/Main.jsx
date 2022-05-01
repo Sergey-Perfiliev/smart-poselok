@@ -2,6 +2,7 @@ import React from 'react'
 import { connect } from 'react-redux'
 import Header from '../Header/Header'
 import { signOut } from '../../Redux/auth-reducer'
+import { addVote } from '../../Redux/profile-reducer'
 import Profile from '../Profile/Profile'
 
 const Main = (props) => {
@@ -16,6 +17,7 @@ const Main = (props) => {
 				neighbours={props.neighbours} 
 				vote={props.vote} 
 				roles={props.roles} 
+				addVote={props.addVote}
 			/>
 		</>
 	)
@@ -29,4 +31,4 @@ const mapStateToProps = (state) => ({
 	vote: state.profile.currentVote
 })
 
-export default connect(mapStateToProps, {signOut})(Main)
+export default connect(mapStateToProps, {signOut, addVote})(Main)

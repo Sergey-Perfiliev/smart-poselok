@@ -1,0 +1,70 @@
+.modern-radio-container {
+  margin: 24px 0;
+  display: flex;
+  user-select: none;
+
+	&:last-child {
+		margin: 24px 0 0 0;
+	}
+
+	&--cursor-pointer {
+		cursor: pointer;
+	}
+}
+
+.radio-outer-circle {
+  width: 18px;
+  height: 18px;
+  min-width: 18px;
+  min-height: 18px;
+  border: 2px solid #00cc66;
+  border-radius: 50%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  margin-right: 12px;
+  transition: all 0.2s linear;
+}
+
+.radio-inner-mark {
+	position: relative;
+	display: inline-block;
+	width: 12px;
+	height: 14px;
+
+	&::before {
+		position: absolute;
+		left: -5px;
+		top: 6px;
+		height: 50%;
+		width: 3px;
+		background-color: #00cc66;
+		content: "";
+		transform: translateX(10px) rotate(-45deg);
+		transform-origin: left bottom;
+	}
+
+	&::after {
+		position: absolute;
+		left: -5px;
+		bottom: 1px;
+		height: 3px;
+		width: 100%;
+		background-color: #00cc66;
+		content: "";
+		transform: translateX(10px) rotate(-45deg);
+		transform-origin: left bottom;
+	}
+}
+
+.unselected {
+  border: 2px solid #9E9E9E;
+}
+.unselected-circle {
+  width: 0;
+  height: 0;
+}
+.helper-text {
+  color: black;
+  padding-right: 8px;
+}

@@ -1,0 +1,104 @@
+@import '../../colors';
+@import '../../media-queries';
+
+@mixin break {
+	thead {
+		display: none;
+	}
+
+	tr {
+		display: block;
+		margin-bottom: 4px;
+	}
+
+	td {
+		display: block;
+		position: relative;
+		padding-left: 130px;
+		text-align: left;
+		border-bottom: 0;
+
+		&:last-child {
+			border-bottom: 1px solid black;
+		}
+
+		&::before {
+			content: attr(data-heading);
+			position: absolute;
+			top: 0;
+			left: 0;
+			width: 120px;
+			height: 100%;
+			display: flex;
+			align-items: center;
+			font-size: 0.75rem;
+			padding: 0 5px;
+			justify-content: center;
+			border-right: 1px solid black;
+			margin-right: 12px;
+		}
+	}
+}
+
+.table-container {
+	width: 100%;
+	margin: 0 auto 40px;
+
+	&__title {
+		margin-bottom: 24px;
+
+		h2 {
+			margin: 0;
+			padding: 0;
+			
+			font-style: normal;
+			font-weight: 400;
+			font-size: 28px;
+		}
+	}
+
+	&__table {
+		width: 100%;
+		border-collapse: collapse;
+		border-spacing: 0;
+		display: table;
+
+		thead {
+			border-bottom: 1px solid $primary;
+		}
+
+		tbody {
+			tr {
+				cursor: pointer;
+
+				&:hover {
+					background-color: $secondary;
+					transition: all .3s ease;
+				}
+			}
+		}
+
+		td, th {
+			padding: 16px;
+			// text-align: center;
+		}
+
+		tr {}
+
+		&--break-lg {
+			@media (max-width: 991px) {
+				@include break;
+			}
+		}
+		&--break-md {
+			@media (max-width: 767px) {
+				@include break;
+			}
+		}
+		&--break-sm {
+			@media (max-width: 575px) {
+				@include break;
+			}
+		}
+	}
+}

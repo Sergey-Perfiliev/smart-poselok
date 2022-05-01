@@ -7,7 +7,7 @@ import ProfileVote from '../ProfileVote'
 const ProfileResident = ({ email, vote, neighbours, enabled }) => {
 	return (
 		<>
-			<div>
+			<div className='profile-villager-container'>
 				<ProfileInfo email={email} />
 				<ProfileFriendlyLink />
 				<ProfileVote vote={vote} enabled={enabled} />

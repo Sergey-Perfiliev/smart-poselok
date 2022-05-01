@@ -8,11 +8,11 @@ const SET_AUTH_USER_DATA = 'SET_AUTH_USER_DATA'
 //resident, representative, admin, owner
 
 export let initialState = {
-	email: null,
-	userId: null,
-	token: null,
-	isAuth: false,
-	roles: ['representative'],
+	email: null || localStorage.getItem('email'),
+	userId: null || localStorage.getItem('userId'),
+	token: null || localStorage.getItem('token'),
+	isAuth: false || localStorage.getItem('isAuth'),
+	roles: ['representative', 'admin'],
 	loading: false,
 	error: null
 }
@@ -50,6 +50,12 @@ export const login = (email, password) => {
 		let token = 'eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJ1c2VyX2lkIjo0LCJyb2xlcyI6W10sImV4cCI6MTY4MjM3ODUxNn0.EijWC87tbA3hvQjyxWNNAjBhdS7_5zd2d-'
 		let authTokenData = jwtDecode(token)
 		console.log(authTokenData);
+
+		localStorage.setItem('email', email);
+		localStorage.setItem('userId', authTokenData.user_id);
+		localStorage.setItem('token', token);
+		localStorage.setItem('isAuth', true);
+
 		dispatch(setAuthUserData(email, authTokenData.user_id, token, true))
 	}
 }

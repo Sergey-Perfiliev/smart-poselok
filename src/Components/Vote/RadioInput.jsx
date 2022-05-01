@@ -1,12 +1,12 @@
 import React from "react";
-import "./radio.css";
+import "./radio.scss";
 
 const RadioInput = (props) => {
 	const { selected, onChange, text, value, submitted, setSubmitted, enabled } = props;
-
+	
 	return (
 		<div
-			className="modern-radio-container"
+			className={`modern-radio-container ${enabled && 'modern-radio-container--cursor-pointer'}`}
 			onClick={() => {
 				if (!submitted && enabled) {
 					setSubmitted(true)
