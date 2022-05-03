@@ -45,6 +45,7 @@ let initialState = {
 	currentVote: {
 		id: 1,
 		title: 'Уборка территории',
+		is_active: true,
 		options: [
 			{
 				id: 15,
@@ -60,6 +61,7 @@ let initialState = {
 		{
 			id: 6,
 			title: 'Ремонт площадки',
+			is_active: false,
 			options: [
 				{
 					id: 10,
@@ -77,6 +79,7 @@ let initialState = {
 			id: 15,
 			voted: 5,
 			title: 'Стройка забора',
+			is_active: false,
 			options: [
 				{
 					id: 5,
@@ -86,7 +89,7 @@ let initialState = {
 				{
 					id: 6,
 					description: "Нет",
-					votes_number: 60
+					votes_number: 50
 				},
 				{
 					id: 7,

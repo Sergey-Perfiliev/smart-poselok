@@ -43,10 +43,15 @@ export const AuthAutocomplete = styled(Autocomplete)({
 });
 
 export const AuthOutlinedInput = styled(OutlinedInput)({
-	'& label.Mui-focused': {
-		color: 'black',
+	'& .Mui-focused': {
+		borderColor: '#24b66d',
 	},
-	'& .MuiOutlinedInput-input:hover': {},
+	'& .MuiOutlinedInput-notchedOutline': {
+		borderColor: '#24b66d',
+		'&:hover': {
+			borderColor: '#24b66d',
+		},
+	},
 });
 
 export const AuthMenuItem = styled(MenuItem)({
