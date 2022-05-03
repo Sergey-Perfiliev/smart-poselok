@@ -1,7 +1,7 @@
 export function convertRole(role) {
 	switch (role) {
 		case 'resident':
-			return 'Жилец'
+			return 'Житель'
 
 		case 'representative':
 			return 'Представитель'
@@ -12,8 +12,20 @@ export function convertRole(role) {
 		case 'owner':
 			return 'Владелец'
 
+		case 'Житель':
+			return 'resident'
+
+		case 'Представитель':
+			return 'representative'
+
+		case 'Администратор':
+			return 'admin'
+
+		case 'Владелец':
+			return 'owner'
+
 		default:
-			return 'Обрабатывается'
+			return null
 	}
 }
 

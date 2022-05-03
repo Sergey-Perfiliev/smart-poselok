@@ -51,18 +51,18 @@ export const login = (email, password) => {
 		let authTokenData = jwtDecode(token)
 		console.log(authTokenData);
 
-		localStorage.setItem('email', email);
-		localStorage.setItem('userId', authTokenData.user_id);
-		localStorage.setItem('token', token);
-		localStorage.setItem('isAuth', true);
+		// localStorage.setItem('email', email);
+		// localStorage.setItem('userId', authTokenData.user_id);
+		// localStorage.setItem('token', token);
+		// localStorage.setItem('isAuth', true);
 
 		dispatch(setAuthUserData(email, authTokenData.user_id, token, true))
 	}
 }
 
-export const register = (email, firstName, secondName, patronymic, password) => {
+export const register = (email, firstName, lastName, patronymic, password) => {
 	return async (dispatch) => {
-		let response = await authApi.register(email, firstName, secondName, patronymic, password)
+		let response = await authApi.register(email, firstName, lastName, patronymic, password)
 		
 		if (response.status === 200) {
 			dispatch(login(email, password))

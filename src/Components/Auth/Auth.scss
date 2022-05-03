@@ -1,0 +1,47 @@
+@import '.././../colors';
+
+.auth-container {
+	display: flex;
+	height: 100vh;
+}
+
+.auth {
+	padding: 24px 48px;
+	margin: auto;
+	width: 430px;
+	border: 2px solid $secondary;
+	border-radius: 4px;
+
+	&-title {
+		text-align: center;
+		color: $dark;
+    padding-bottom: 0;
+    padding-top: 16px;
+    font-size: 28px;
+    font-weight: 400;
+    line-height: 1.3333;
+    margin-bottom: 0;
+    margin-top: 0;
+    word-break: break-word;
+	}
+
+	&-form {
+		padding-top: 44px;
+
+		.form-inputWrapper {
+			display: flex;
+			justify-content: space-between;
+			width: 100%;
+		}
+
+		.form-inputWrapper:not(:first-child) {
+			margin-top: 12px;
+		}
+	}
+}
+
+.auth-buttons {
+	margin-top: 44px;
+	display: flex;
+	justify-content: space-between;
+}

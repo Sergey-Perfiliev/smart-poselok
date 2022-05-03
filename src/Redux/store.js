@@ -2,11 +2,13 @@ import { applyMiddleware, combineReducers, compose, createStore } from "redux";
 import thunk from "redux-thunk";
 import AuthReducer from "./auth-reducer";
 import ProfileReducer from "./profile-reducer";
+import VillagerReducer from "./village-reducer";
 
 // reducers
 let reducers = combineReducers({
 	auth: AuthReducer,
-	profile: ProfileReducer
+	profile: ProfileReducer,
+	villages: VillagerReducer,
 })
 
 // store with redux dev tools

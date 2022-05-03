@@ -1,64 +1,86 @@
-import { Field, Form, withFormik } from 'formik'
 import React from 'react'
+import { useFormik } from 'formik'
+import { Link, Navigate } from 'react-router-dom'
 import { connect } from 'react-redux'
-import { Navigate } from 'react-router-dom'
-import * as yup from 'yup'
 import { login } from '../../../Redux/auth-reducer'
+import * as yup from 'yup'
+import Auth from '../Auth';
+import { AuthTextField } from '../AuthFields'
+import '../Auth.scss'
+
+
+const validationSchema = yup.object({
+	email: yup
+		.string()
+		.required()
+		.max(20)
+		.matches(/^[A-Z0-9._%+-]+@[A-Z0-9.-]+\.[A-Z]{2,}$/i, "Введите адрес электронной почты"),
+	password: yup
+		.string()
+		.required('Введите пароль'),
+})
 
 const Login = (props) => {
-	const { touched, errors } = props;
+	const formik = useFormik({
+		initialValues: {
+			email: props.email || 'ser@gmail.com',
+			password: props.password || ''
+		},
+		validationSchema: validationSchema,
+		onSubmit: (values, { login, setSubmitting }) => {
+			setSubmitting(true)
+			// async call
+			console.log(values)
+			props.login(values.email, values.password)
+			setSubmitting(false)
+		}
+	})
 
-	if (props.isAuth) 
+	if (props.isAuth)
 		return <Navigate to={"/"} />
 
 	return (
-		<div>
-			<h2>Login</h2>
-			<Form>
-				<div>
-					<label htmlFor="email">Email</label>
-					<Field type="text" name="email" placeholder="email" />
-					{touched.email && errors.email && <span className="help-block text-danger">{errors.email}</span>}
+		<Auth title={'Вход'}>
+			<form className='auth-form' onSubmit={formik.handleSubmit}>
+				<div className='form-inputWrapper'>
+					<AuthTextField
+						fullWidth
+						name="email"
+						label="Email"
+						value={formik.values.email}
+						onChange={formik.handleChange}
+						error={formik.touched.email && Boolean(formik.errors.email)}
+						helperText={formik.touched.email && formik.errors.email}
+						InputProps={{
+							style: {}
+						}}
+					/>
 				</div>
-				<div>
-					<label htmlFor="password">Password</label>
-					<Field type="password" name="password" placeholder="Password" />
-					{touched.password && errors.password && <span className="help-block text-danger">{errors.password}</span>}
+				<div className='form-inputWrapper'>
+					<AuthTextField
+						fullWidth
+						name="password"
+						label="Пароль"
+						type="password"
+						value={formik.values.password}
+						onChange={formik.handleChange}
+						error={formik.touched.password && Boolean(formik.errors.password)}
+						helperText={formik.touched.password && formik.errors.password}
+					/>
 				</div>
-				<button type='submit'>Login</button>
-			</Form>
-		</div >
+				<div className='auth-buttons'>
+					<Link to={'/registration'} className='btn btn-profile'>Создать аккаунт</Link>
+					<button className='btn btn-profile' type="submit">
+						Войти
+					</button>
+				</div>
+			</form>
+		</Auth>
 	)
 }
-
-const LoginFormik = withFormik({
-	mapPropsToValues: (props) => {
-		return {
-			email: props.email || 'ser@gmail.com',
-			password: props.password || ''
-		}
-	},
-	validationSchema: yup.object({
-		email: yup
-			.string()
-			.required()
-			.max(20)
-			.matches(/^[A-Z0-9._%+-]+@[A-Z0-9.-]+\.[A-Z]{2,}$/i, "Enter a valid email address"),
-		password: yup
-			.string()
-			.required('Password is required'),
-	}),
-	handleSubmit: (values, { props, setSubmitting }) => {
-		setSubmitting(true)
-		// async call
-		console.log(values)
-		props.login(values.email, values.password)
-		setSubmitting(false)
-	}
-})(Login);
 
 const mapStateToProps = (state) => ({
 	isAuth: state.auth.isAuth
 })
 
-export default connect(mapStateToProps, { login })(LoginFormik)
+export default connect(mapStateToProps, { login })(Login)

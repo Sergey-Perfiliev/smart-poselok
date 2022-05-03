@@ -17,13 +17,14 @@ export const authApi = {
 	login(email, password) {
 		return instance.post('user/login', { email, password })
 	},
-	register(email, firstName, secondName, patronymic, password) {
+	register(email, firstName, secondName, patronymic, password, pending_role) {
 		return instance.post('user/register', { 
 			email,
 			firstName,
 			secondName,
 			patronymic,
-			password
+			password,
+			pending_role,
 		})
 	}
 }
