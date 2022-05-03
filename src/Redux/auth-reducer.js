@@ -12,7 +12,6 @@ export let initialState = {
 	userId: null || localStorage.getItem('userId'),
 	token: null || localStorage.getItem('token'),
 	isAuth: false || localStorage.getItem('isAuth'),
-	roles: ['representative', 'admin'],
 	loading: false,
 	error: null
 }
@@ -43,9 +42,9 @@ export const login = (email, password) => {
 		// if (response.status === 200) {
 		// 	dispatch(setAuthUserData(email, response.data.userId, response.data.token, true))
 		// }
-		// if (response.status === 4**)
+		// if (response.status === 400)
 		//  dispatch(setError(response.errorMessage))
-		//
+		
 
 		let token = 'eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJ1c2VyX2lkIjo0LCJyb2xlcyI6W10sImV4cCI6MTY4MjM3ODUxNn0.EijWC87tbA3hvQjyxWNNAjBhdS7_5zd2d-'
 		let authTokenData = jwtDecode(token)

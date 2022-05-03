@@ -1,42 +1,60 @@
 import React from 'react'
 import ProfileProcessing from './Roles/ProfileProcessing'
 import './_profile.scss'
-import ProfileRepresentative from './Roles/ProfileRepresentative'
-import ProfileResident from './Roles/ProfileResident'
 import ProfileAdministrator from './Roles/ProfileAdministrator'
+import ProfileVillager from './Roles/ProfileVillager'
+import SyncAutoComplete from '../Common/SyncAutoComplete'
 
-const Profile = ({ email, neighbours, vote, roles, addVote }) => {
-	let voteEnabled = roles.some(role => role === 'representative')
-	let isVillager = roles.some(role => role === 'representative' || role === 'resident')
+const Profile = (props) => {
+	console.log(props)
+	const { neighbours, vote, villages, addVote } = props
+	const { email, roles } = props.profile
+	const [currentProfileVillage, setCurrentProfileVillage] = React.useState(villages[0])
+	const villageRole = roles.filter(el => el.village_id === currentProfileVillage.id)[0]
+
+	let isVillager = !!villageRole.role.villager && !!Object.keys(villageRole.role.villager)
+	let voteEnabled = isVillager
+		? Object.keys(villageRole.role.villager)[0] === 'representative'
+		: false
+	let isAdmin = villageRole.role.is_admin
 
 	return (
 		<div className='profile'>
 			{
-				roles.length === 0 ?
-					<ProfileProcessing /> :
-					roles.some(role => role === 'admin') ?
-						<ProfileAdministrator
-							email={email}
-							neighbours={neighbours}
-							enabled={voteEnabled}
-							vote={vote}
-							isVillager={isVillager}
-							addVote={addVote}
-						/> :
-						roles.some(role => role === 'representative') ?
-							<ProfileRepresentative
-								email={email}
-								neighbours={neighbours}
-								enabled={voteEnabled}
-								vote={vote} /> :
-							roles.some(role => role === 'resident') ?
-								<ProfileResident
-									email={email}
-									neighbours={neighbours}
-									enabled={voteEnabled}
-									vote={vote} /> :
-								<></>
+				roles.length > 1 && <div className='profile-variant'>
+					<SyncAutoComplete
+						data={villages}
+						defaultValue={villages[0]}
+						onChange={setCurrentProfileVillage}
+						label='Посёлок'
+						disableClearable={true}
+						required={false}
+					/>
+				</div>
 			}
+			<div className='profile-content'>
+				{
+					!roles.length && <ProfileProcessing />
+				}
+				{
+					isAdmin && <ProfileAdministrator
+						email={email}
+						neighbours={neighbours}
+						enabled={voteEnabled}
+						vote={vote}
+						isVillager={isVillager}
+						addVote={addVote}
+					/>
+				}
+				{
+					!isAdmin && isVillager && <ProfileVillager
+						email={email}
+						neighbours={neighbours}
+						enabled={voteEnabled}
+						vote={vote}
+					/>
+				}
+			</div>
 		</div>
 	)
 }

@@ -1,7 +1,7 @@
 import React from 'react'
 
 import { TextField, CircularProgress } from '@mui/material';
-import { AuthAutocomplete } from '../AuthFields';
+import { AuthAutocomplete } from '../Auth/AuthFields';
 
 function sleep(delay = 0) {
 	return new Promise((resolve) => {
@@ -9,7 +9,7 @@ function sleep(delay = 0) {
 	});
 }
 
-const AsyncAutoComplete = ({ data, label, value, disabled, onChange, query, width = 100 }) => {
+const AsyncAutoComplete = ({ data, label, value, disabled, onChange, required = true, query, width = 100 }) => {
 	const [open, setOpen] = React.useState(false);
 	const [options, setOptions] = React.useState([]);
 	const loading = open && options.length === 0;
@@ -62,7 +62,7 @@ const AsyncAutoComplete = ({ data, label, value, disabled, onChange, query, widt
 				<TextField
 					{...params}
 					label={label}
-					required
+					required={required}
 					InputProps={{
 						...params.InputProps,
 						endAdornment: (

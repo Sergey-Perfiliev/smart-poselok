@@ -4,12 +4,18 @@ const instance = axios.create({
 	baseURL: 'http://185.245.186.22:3727/'
 })
 
-export const userAPI = {
+export const profileAPI = {
 	getUser(id) {
 		return instance.get(`user/${id}`)
 			.then(response => {
 				return response.data
 			})
+	},
+	getProfile(token) {
+		return instance.get(`user/self`, {token})
+		.then(response => {
+			return response.data
+		})
 	}
 }
 

@@ -1,9 +1,40 @@
+import { profileAPI } from "../API/api"
+
+const SET_USER_PROFILE = 'SET_USER_PROFILE'
 const SET_NEIGHBOURS = 'SET_NEIGHBOURS'
 const ADD_VOTE = 'ADD_VOTE'
 const CHANGE_USER_INFO = 'CHANGE_USER_INFO'
 const DELETE_USER = 'DELETE_USER'
 
 let initialState = {
+	profile: {
+		email: 'test@test.com',
+		first_name: 'Bob',
+		id: 4,
+		patronymic: null,
+		roles: [
+			{
+				village_id: 4,
+				role: {
+					is_admin: true,
+					is_owner: false,
+					villager: {
+						representative: 47
+					}
+				}
+			},
+			{
+				village_id: 7,
+				role: {
+					is_admin: false,
+					villager: {
+						resident: 55
+					}
+				}
+			}
+		],
+		last_name: 'Doe'
+	},
 	neighbours: [
 		{ id: 0, name: "Name" },
 		{ id: 15, name: "Alex" },
@@ -89,6 +120,12 @@ let initialState = {
 
 const ProfileReducer = (state = initialState, action) => {
 	switch (action.type) {
+		case SET_USER_PROFILE: 
+		return {
+				...state,
+				profile: action.profile
+			}
+
 		case SET_NEIGHBOURS:
 			return {
 				...state,
@@ -124,6 +161,10 @@ const ProfileReducer = (state = initialState, action) => {
 	}
 }
 
+export const setUserProfile = (profile) => ({
+	type: SET_USER_PROFILE, profile
+})
+
 export const addVote = (title, options) => ({
 	type: ADD_VOTE, newVote: { id: Math.random(), title, options }
 })
@@ -139,6 +180,14 @@ export const changeVillagerInfoAC = (villager) => ({
 export const deleteVillagerAC = (villagerId) => ({
 	type: DELETE_USER, villagerId
 })
+
+export const getSelfProfile = () => {
+	return async (dispatch) => {
+		let response = await profileAPI.getSelfProfile()
+
+		dispatch(setUserProfile(response))
+	}
+}
 
 export const setNewVote = (title, options) => {
 	return async (dispatch) => {

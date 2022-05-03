@@ -4,7 +4,7 @@ import ProfileInfo from '../ProfileInfo'
 import ProfileNeighbours from '../ProfileNeighbours'
 import ProfileVote from '../ProfileVote'
 
-const ProfileRepresentative = ({ email, vote, neighbours, enabled }) => {
+const ProfileVillager = ({ email, vote, neighbours, enabled }) => {
 	return (
 		<>
 			<div className='profile-villager-container'>
@@ -18,4 +18,4 @@ const ProfileRepresentative = ({ email, vote, neighbours, enabled }) => {
 	)
 }
 
-export default ProfileRepresentative
+export default ProfileVillager

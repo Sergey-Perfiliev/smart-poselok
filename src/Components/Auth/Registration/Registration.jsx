@@ -13,7 +13,7 @@ import ListItemText from '@mui/material/ListItemText';
 import Select from '@mui/material/Select';
 import ListSubheader from '@mui/material/ListSubheader';
 import { convertRole } from '../../../Helpers/convertRole';
-import AsyncAutoComplete from './AsyncAutoComplete';
+import AsyncAutoComplete from '../../Common/AsyncAutoComplete';
 
 const validationSchema = yup.object({
 	email: yup
