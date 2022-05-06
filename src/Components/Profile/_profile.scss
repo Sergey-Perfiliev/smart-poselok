@@ -1,268 +1,259 @@
-@import '../../colors';
-@import '../../media-queries';
+@import "../../colors";
+@import "../../media-queries";
 
 .profile {
+  &-variant {
+    width: 270px;
+    margin-bottom: 24px;
+  }
 
-	&-variant {
-		width: 270px;
-		margin-bottom: 24px;
-	}
+  &-content {
+    display: flex;
+    justify-content: space-between;
+  }
 
-	&-content {
-		display: flex;
-		justify-content: space-between;
-	}
+  &-processing {
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    margin-top: 240px;
+  }
 
-	&-villager-container {
-		max-width: 500px;
-	}
+  &-villager-container {
+    max-width: 500px;
+  }
 
-	&-admin-container {
-		max-width: 440px;
-		width: 100%;
-	}
+  &-admin-container {
+    max-width: 440px;
+    width: 100%;
+  }
 
-	&-admin-panel {
-		max-width: 320px;
-		width: 100%;
-	}
-	
-	&__info {
-		margin-bottom: 32px;
-		padding: 16px 32px;
-		background-color: white;
-		height: 180px;
-		border-radius: 8px;
-		display: flex;
-		align-items: center;
+  &-admin-panel {
+    max-width: 320px;
+    width: 100%;
+  }
 
-		&-icon {
-			width: 88px;
-			height: 88px;
-			
-			background: #EFEFEF;
-			border-radius: 100%;
-		}
+  &__info {
+    padding: 16px 32px;
+    background-color: white;
+    height: 180px;
+    border-radius: 8px;
+    display: flex;
+    align-items: center;
 
-		&-content {
-			margin-left: 24px;
-			display: flex;
-			flex-direction: column;
-			justify-content: center;
+    &-icon {
+      width: 88px;
+      height: 88px;
 
-			mt-16 {
-				margin-top: 16px;
-			}
+      background: $light-icon;
+      border-radius: 100%;
+    }
 
-			&>div {
-				display: flex;
-				align-items: center;
-				
-				&>span {
-					margin-left: 16px;
-					font-style: normal;
-					font-weight: 400;
-					font-size: 14px;
-					line-height: 17px;
-				}
-			}
-		}
+    &-content {
+      margin-left: 24px;
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
 
-		&-name {
-			display: inline;			
-			margin: 0;
-			padding: 0;
-			font-style: normal;
-			font-weight: 400;
-			font-size: 24px;
-			line-height: 29px;
-		}
+      mt-16 {
+        margin-top: 16px;
+      }
 
-		&-payment {
-			font-style: normal;
-			font-weight: 400;
-			font-size: 16px;
-			line-height: 19px;
-		}
-	}
+      & > div {
+        display: flex;
+        align-items: center;
 
-	&__friendly-link, &__vote, &__new-vote, &__view-villagers {
-		background-color: white;
-		border-radius: 8px;		
-		padding: 24px 32px;
-		
-		&-title {
-			margin: 0;
-			padding: 0;
-			
-			font-style: normal;
-			font-weight: 400;
-			font-size: 24px;
-			line-height: 29px;
-		}
-	}
-	
-	&__friendly-link {
-		&>div {
-			margin-top: 24px;
-			display: flex;
-			align-items: center;
-		}
+        & > span {
+          margin-left: 16px;
+          font-style: normal;
+          font-weight: 400;
+          font-size: 14px;
+          line-height: 17px;
+        }
+      }
+    }
 
-		&-title {}
+    &-name {
+      display: inline;
+      margin: 0;
+      padding: 0;
+      font-style: normal;
+      font-weight: 400;
+      font-size: 24px;
+      line-height: 29px;
+    }
 
-		&-url {
-			font-style: normal;
-			font-weight: 400;
-			font-size: 18px;
-			line-height: 21px;
+    &-payment {
+      font-style: normal;
+      font-weight: 400;
+      font-size: 16px;
+      line-height: 19px;
+    }
+  }
 
-			padding: 8px 12px;
-			background-color: #EFEFEF;
-			border-radius: 16px;
-			width: fit-content;
+  &__content-el {
+    padding: 24px 32px;
+    margin-top: 32px;
+    background-color: $white;
+    border-radius: 8px;
 
-			max-width: 280px;
-			overflow: hidden;
-			white-space: nowrap;
-			text-overflow: ellipsis;
-		}
+    &__title {
+      margin: 0;
+      padding: 0;
 
-		.btn-friendly-link {	
-			margin-left: 24px;
-		}
-	}
+      font-style: normal;
+      font-weight: 400;
+      font-size: 24px;
+      line-height: 29px;
+    }
 
-	&__vote {
-		margin-top: 32px;
-		padding: 24px 32px;
+    &__content {
+      margin-top: 24px;
+    }
+  }
 
-		&-header {
-			display: flex;
-			align-items: center;
-			flex-wrap: nowrap;
+  &__friendly-link {
+    &__content {
+      display: flex;
+      align-items: center;
+    }
 
-			&>h3 {
-				width: 100%;
-			}
-		}
+    &__url {
+      font-style: normal;
+      font-weight: 400;
+      font-size: 18px;
+      line-height: 21px;
 
-		a {
-			width: 90px;
-			font-size: 12px;
-			padding: 4px;
-			border-radius: 4px;
-			color: black;
-			background-color: $primary;
-			color: #FFFFFF;
+      padding: 8px 12px;
+      background-color: $light;
+      border-radius: 16px;
+      width: fit-content;
 
-			&:hover {
-				background: $secondary;
-				transition: .3s all ease;
-			}
-		}
-	}
+      max-width: 280px;
+      overflow: hidden;
+      white-space: nowrap;
+      text-overflow: ellipsis;
+    }
 
-	&__neighbours {
-		max-width: 320px;
-		width: 100%;
-		height: 280px;
-		background-color: #FFFFFF;
-		border-radius: 8px;
+    .btn-friendly-link {
+      margin-left: 24px;
+    }
+  }
 
-		overflow-y: auto;
-		
+  &__vote {
+    &__header {
+      display: flex;
+      align-items: center;
+      flex-wrap: nowrap;
+    }
 
-		&-el {
-			display: flex;
-			align-items: center;
-			padding-left: 16px;
-			margin: 12px;
-			height: 48px;
-			
-			background: #EFEFEF;
-			border-radius: 8px;
+    &__title {
+      width: 100%;
+    }
 
-			&__icon {
-				width: 24px;
-				height: 24px;
-				background-color: #a0a0a0;
-				border-radius: 100%;
-			}
+    a {
+      width: 80px;
+      font-size: 12px;
+      padding: 4px;
+      border-radius: 4px;
+      color: black;
+      background-color: $primary;
+      color: $white;
 
-			&>h5 {
-				margin-left: 16px;
-				font-style: normal;
-				font-weight: 500;
-				font-size: 16px;
-			}
+      &:hover {
+        background: $secondary;
+        transition: 0.3s all ease;
+      }
+    }
+  }
 
-			&>span {
-				margin-left: 12px;
-				font-style: normal;
-				font-weight: 400;
-				font-size: 14px;
-			}
-		}
-	}
+  &__new-vote {
+    margin-top: 0;
+  }
 
-	&__new-vote {
-		margin-bottom: 32px;
-	}
-}
+  &__neighbours {
+    max-width: 320px;
+    width: 100%;
+    height: 280px;
+    background-color: $white;
+    border-radius: 8px;
 
-// scroll bar; neighbours section
-.profile__neighbours::-webkit-scrollbar {
-	width: 8px;
-}
+    overflow-y: auto;
 
-.profile__neighbours::-webkit-scrollbar-track {
-	border-radius: 12px;
-	background-color: #f8f8f8;
-	margin-block: 16px;
-}
+    &-el {
+      display: flex;
+      align-items: center;
+      padding-left: 16px;
+      margin: 12px;
+      height: 48px;
 
-.profile__neighbours::-webkit-scrollbar-thumb {
-	border-radius: 12px;
-	background-color: #c5c5c5;
-	transition: scrollbar-color 0.3s ease-out;
-}
+      background: $light;
+      border-radius: 8px;
 
-.profile__neighbours::-webkit-scrollbar-thumb:hover {
-	background-color: #a0a0a0;
+      &__icon {
+        width: 24px;
+        height: 24px;
+        background-color: $dark-icon;
+        border-radius: 100%;
+      }
+
+      & > h5 {
+        margin-left: 16px;
+        font-style: normal;
+        font-weight: 500;
+        font-size: 16px;
+      }
+
+      & > span {
+        margin-left: 12px;
+        font-style: normal;
+        font-weight: 400;
+        font-size: 14px;
+      }
+    }
+
+		// scroll bar
+    &::-webkit-scrollbar {
+      width: 8px;
+    }
+
+    &::-webkit-scrollbar-track {
+      border-radius: 12px;
+      background-color: $scrollbar-track;
+      margin-block: 16px;
+    }
+
+    &::-webkit-scrollbar-thumb {
+      border-radius: 12px;
+      background-color: $scrollbar-thumb;
+      transition: scrollbar-color 0.3s ease-out;
+    }
+
+    &::-webkit-scrollbar-thumb:hover {
+      background-color: scrollbar-thumb-hover;
+    }
+  }
 }
 
 .btn-profile {
-	padding: 8px 12px;
-	font-style: normal;
-	font-weight: 400;
-	font-size: 18px;
-	line-height: 21px;
+  padding: 8px 12px;
+  font-style: normal;
+  font-weight: 400;
+  font-size: 18px;
+  line-height: 21px;
 
-	color: #FFFFFF;
-	background: $primary;
-	border-radius: 12px;
-	
-	&:hover {
-		background: $secondary;
-		transition: .3s all ease;
-	}
+  color: $white;
+  background: $primary;
+  border-radius: 12px;
+
+  &:hover {
+    background: $secondary;
+    transition: 0.3s all ease;
+  }
 }
 
-.btn-new-vote, .btn-view-villagers {
-	margin-top: 12px;
-}
-
-.profile__view-villagers-title {
-	margin-bottom: 24px;
-}
-
-// roles
-
-.profile-processing {
-	width: 100%;
-	display: flex;
-	flex-direction: column;
-	align-items: center;
-	margin-top: 240px;
+.btn-new-vote,
+.btn-view-villagers {
+  display: inline-block;
 }

@@ -1,0 +1,24 @@
+$primary: #00cc66;
+$secondary: #24b66d;
+
+$primary-darkTheme: #262144;
+$secondary-darkTheme: #36433a;
+
+$white: #ffffff;
+
+$light: #efefef;
+$dark: #1f1f1f;
+
+$light-icon: #efefef;
+$dark-icon: #a0a0a0;
+
+$scrollbar-track: #f8f8f8;
+$scrollbar-thumb: #c5c5c5;
+$scrollbar-thumb-hover: #a0a0a0;
+
+:export {
+  primary: $primary;
+  secondary: $secondary;
+
+	light: $light;
+}

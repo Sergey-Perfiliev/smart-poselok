@@ -13,10 +13,10 @@ const ProfileFriendlyLink = (props) => {
 	}
 
 	return (
-		<div className='profile__friendly-link'>
-			<h3 className='profile__friendly-link-title'>Ссылка</h3>
-			<div>
-				<p className='profile__friendly-link-url'>
+		<div className='profile__content-el profile__friendly-link'>
+			<h3 className='profile__content-el__title profile__friendly-link__title'>Ссылка</h3>
+			<div className='profile__content-el__content profile__friendly-link__content'>
+				<p className='profile__friendly-link__url '>
 					https://smartposelok/invite/code=?gnauisxb
 				</p>
 				<button

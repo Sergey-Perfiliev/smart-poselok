@@ -138,7 +138,7 @@ const ProfileReducer = (state = initialState, action) => {
 		case ADD_VOTE:
 			return {
 				...state,
-				votes: [action.newVote, ...state.votes]
+				votes: [...state.votes, action.newVote]
 			}
 
 		case CHANGE_USER_INFO:

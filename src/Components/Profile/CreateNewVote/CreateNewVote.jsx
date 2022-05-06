@@ -1,8 +1,8 @@
 import React, { useState } from 'react'
 import Popup from 'reactjs-popup'
-import './PopUp.scss'
+import '../PopUp.scss'
 
-const CreateNewVote = ({ createNewVoteMode, setCreateNewVoteMode, addVote }) => {
+const CreateNewVote = ({ createNewVoteMode, setCreateNewVoteMode, setNewVote }) => {
 	const [titleValue, setTitleValue] = useState('')
 	const [inputList, setInputList] = useState([''])
 
@@ -28,10 +28,10 @@ const CreateNewVote = ({ createNewVoteMode, setCreateNewVoteMode, addVote }) => 
 	}
 
 	const handleSubmit = (e) => {
-		e.preventDefault()
+		e.preventDefault();
 		setCreateNewVoteMode(false)
-		const options = inputList.map(el => el = { id: Math.floor(Math.random() * 999), description: el  })
-		addVote(titleValue, options)
+		const options = inputList.map(el => el = { id: Math.floor(Math.random() * 999), description: el })
+		setNewVote(titleValue, options)
 		console.log(titleValue, inputList);
 	}
 
@@ -41,20 +41,20 @@ const CreateNewVote = ({ createNewVoteMode, setCreateNewVoteMode, addVote }) => 
 
 	return (
 		<Popup open={createNewVoteMode} closeOnDocumentClick onClose={() => setCreateNewVoteMode(false)} >
-			<form className="popup-view">
+			<div className="popup-view">
 				<div className="popup-header">
 					<h2>Создать новое голосование</h2>
 				</div>
 
-				<div className="popup-content">
+				<form className="popup-content">
 					<div className='popup-content__container'>
-						<h3>Тема опроса<span onClick={closeModal} className='delete-cross delete-cross-title'>×</span></h3>
+						<h3 className='popup-content__container-title'>Тема опроса<span onClick={closeModal} className='delete-cross delete-cross-title'>×</span></h3>
 						<div className='input-wrapper'>
 							<input type="text" className='popup-input' value={titleValue} onChange={e => handleTitleValue(e)} />
 						</div>
 					</div>
 					<div className='popup-content__container'>
-						<h3>Варианты ответа</h3>
+						<h3 className='popup-content__container-title'>Варианты ответа</h3>
 						{
 							inputList.map((input, i) => (
 								<div className='input-container' key={i}>
@@ -65,6 +65,7 @@ const CreateNewVote = ({ createNewVoteMode, setCreateNewVoteMode, addVote }) => 
 											className='popup-input'
 											value={input}
 											onChange={(e) => handleInputChange(e, i)}
+											autoFocus
 										/>
 										{inputList.length > 1 && <span className='delete-cross delete-cross-input' onClick={() => handleInputRemove(i)}>×</span>}
 									</div>
@@ -83,12 +84,12 @@ const CreateNewVote = ({ createNewVoteMode, setCreateNewVoteMode, addVote }) => 
 							))
 						}
 					</div>
-				</div>
 
-				<div className="popup-footer">
-					<button className="btn btn-profile btn-popup btn-popup--submit" onClick={(e) => handleSubmit(e)}>Создать</button>
-				</div>
-			</form>
+					<div className="popup-footer">
+						<button className="btn btn-profile btn-popup btn-popup--submit" onClick={handleSubmit}>Создать</button>
+					</div>
+				</form>
+			</div>
 		</Popup>
 	)
 }

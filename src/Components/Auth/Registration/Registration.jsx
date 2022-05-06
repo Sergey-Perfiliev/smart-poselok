@@ -173,8 +173,8 @@ const Registration = (props) => {
 					<AsyncAutoComplete data={villages} label={'Посёлок'} value={village} onChange={setVillage} disabled={!disabledValue} />
 				</div>
 				<div className='form-inputWrapper'>
-					<AsyncAutoComplete data={streets} label={'Улица'} width='47' value={street} onChange={setStreet} disabled={!disabledValue} />
-					<AsyncAutoComplete data={land_plots} label={'Дом'} width='47' value={landPlot} onChange={setLandPlot} disabled={!disabledValue} />
+					<AsyncAutoComplete data={streets} label={'Улица'} width='47' value={street} onChange={setStreet} disabled={!disabledValue || !village} />
+					<AsyncAutoComplete data={land_plots} label={'Дом'} width='47' value={landPlot} onChange={setLandPlot} disabled={!disabledValue || !street} />
 				</div>
 				<div className='auth-buttons'>
 					<Link to={'/login'} className='btn btn-profile'>Назад</Link>

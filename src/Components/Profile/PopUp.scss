@@ -1,10 +1,10 @@
-@import '../../../colors';
-@import '../../../media-queries';
+@import '../../colors';
+@import '../../media-queries';
 
 .popup-view {
 	padding: 16px;
 	border-radius: 8px;
-	background-color: #EFEFEF;
+	background-color: $light;
 	min-width: 400px;
 }
 
@@ -24,7 +24,7 @@
 	flex-direction: column;
 
 	&__container {
-		&>h3 {
+		&-title {
 			position: relative;
 			font-style: normal;
 			font-weight: 400;
@@ -34,6 +34,15 @@
 				right: 0;
 				top: 0;
 			}
+
+			.delete-cross-title__new-area {
+				margin-left: 24px;
+				right: auto;
+			}
+		}
+
+		&__create_area-title {
+			padding: 8px 12px;
 		}
 	}
 }
@@ -42,6 +51,16 @@
 	position: relative;
 	display: flex;
 	align-items: center;
+
+	&__create-area {
+		margin-top: 12px;
+	}
+}
+
+.select-wrapper {
+	&>div:not(:first-child) {
+		margin-top: 12px;
+	}
 }
 
 .delete-cross {
@@ -53,9 +72,12 @@
 	display: inline-block;
 	color: #afafaf;
 	position: absolute;
-	right: 4px;
-	top: 4px;
 	line-height: 1;
+
+	&-input {
+		right: 4px;
+		top: 4px;	
+	}
 }
 
 .popup-footer {
@@ -67,8 +89,6 @@
   background-color: rgba(0, 0, 0, 0.3);
 }
 
-.popup-inputSubtitle {}
-
 .popup-input {
 	width: 240px;
 	height: 32px;
@@ -76,13 +96,12 @@
 	padding-left: 8px;
 	margin-bottom: 8px;
 
-	background: #FFFFFF;
+	background: $white;
 	border-radius: 4px;
-
-	&__new {}
 }
 
 .btn-popup {
+	display: block;
 	margin-top: 24px;
 
 	&--cancel {

@@ -4,8 +4,8 @@ const SET_LAND_PLOTS = 'SET_LAND_PLOTS'
 
 const initialState = {
 	villages: [
-		{ id: 4, name: 'Малиновка' },
-		{ id: 7, name: 'Вторая' },
+		{ id: 4, name: 'Посёлок 1' },
+		{ id: 7, name: 'Посёлок 2' },
 	],
 	streets: [
 		{ id: 1, name: 'Первая' },
