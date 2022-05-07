@@ -28,7 +28,7 @@ const customStyles = {
 	})
 }
 
-const CustomAsyncSelect = ({ data, value, onChange, placeholder='Выберите...' }) => {
+const CustomAsyncSelect = ({ data, value, onChange, placeholder = 'Выберите...', query }) => {
 	const [open, setOpen] = React.useState(false);
 	const [options, setOptions] = React.useState([])
 	const loading = open && options.length === 0;
@@ -40,19 +40,16 @@ const CustomAsyncSelect = ({ data, value, onChange, placeholder='Выберит�
 			return undefined;
 		}
 
-		(async () => {
-			// query
-			await sleep(300)
+		query()
 
-			if (active) {
-				setOptions([...data]);
-			}
-		})();
+		if (active) {
+			setOptions([...data]);
+		}
 
 		return () => {
 			active = false;
 		};
-	}, [loading]);
+	}, [loading, data]);
 
 	React.useEffect(() => {
 		if (!open) {

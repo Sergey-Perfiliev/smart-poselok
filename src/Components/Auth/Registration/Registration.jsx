@@ -5,8 +5,8 @@ import { Link, Navigate } from 'react-router-dom';
 import * as yup from 'yup'
 import Auth from '../Auth';
 import { register } from '../../../Redux/auth-reducer'
+import { getVillages, getStreets, getLandPlots } from '../../../Redux/village-reducer'
 import { AuthCheckbox, AuthMenuItem, AuthOutlinedInput, AuthTextField } from '../AuthFields';
-
 import InputLabel from '@mui/material/InputLabel';
 import FormControl from '@mui/material/FormControl';
 import ListItemText from '@mui/material/ListItemText';
@@ -19,7 +19,7 @@ const validationSchema = yup.object({
 	email: yup
 		.string()
 		.required()
-		.max(20)
+		.max(30)
 		.matches(/^[A-Z0-9._%+-]+@[A-Z0-9.-]+\.[A-Z]{2,}$/i, "Введите адрес электронной почты"),
 	password: yup
 		.string()
@@ -32,7 +32,7 @@ const validationSchema = yup.object({
 		.required('Введите имя'),
 })
 
-const roles = ['admin', 'representative', 'resident']
+// const roles = ['admin', 'representative', 'resident']
 
 const Registration = (props) => {
 	let { villages, streets, land_plots } = props
@@ -50,8 +50,10 @@ const Registration = (props) => {
 		onSubmit: (values, { setSubmitting }) => {
 			setSubmitting(true)
 			// async call
-			console.log({ ...values, landPlotId: landPlot.id });
-			props.register({ ...values, landPlotId: landPlot.id })
+			console.log(values.email, values.firstName, values.lastName, values.patronymic, 
+				values.password, landPlot.id, village.id, values.roles);
+			props.register(values.email, values.firstName, values.lastName, values.patronymic, 
+				values.password, landPlot.id, village.id, values.roles)
 			setSubmitting(false)
 		},
 	})
@@ -84,7 +86,7 @@ const Registration = (props) => {
 
 	if (props.isAuth)
 		return <Navigate to={"/"} />
-
+	
 	return (
 		<Auth title={'Регистрация'}>
 			<form className='auth-form' onSubmit={formik.handleSubmit}>
@@ -170,11 +172,12 @@ const Registration = (props) => {
 					</FormControl>
 				</div>
 				<div className='form-inputWrapper'>
-					<AsyncAutoComplete data={villages} label={'Посёлок'} value={village} onChange={setVillage} disabled={!disabledValue} />
+					{/* <CustomAsyncSelect data={villages} value={village} onChange={setVillage} query={() => props.getVillages()} /> */}
+					<AsyncAutoComplete data={villages} query={() => props.getVillages()} label={'Посёлок'} value={village} onChange={setVillage} disabled={!disabledValue} />
 				</div>
 				<div className='form-inputWrapper'>
-					<AsyncAutoComplete data={streets} label={'Улица'} width='47' value={street} onChange={setStreet} disabled={!disabledValue || !village} />
-					<AsyncAutoComplete data={land_plots} label={'Дом'} width='47' value={landPlot} onChange={setLandPlot} disabled={!disabledValue || !street} />
+					<AsyncAutoComplete data={streets} query={() => props.getStreets(village?.id)} label={'Улица'} width='47' value={street} onChange={setStreet} disabled={!disabledValue || !village} />
+					<AsyncAutoComplete data={land_plots} query={() => props.getLandPlots(street?.id)} label={'Дом'} width='47' value={landPlot} onChange={setLandPlot} disabled={!disabledValue || !street} />
 				</div>
 				<div className='auth-buttons'>
 					<Link to={'/login'} className='btn btn-profile'>Назад</Link>
@@ -194,4 +197,4 @@ const mapStateToProps = (state) => ({
 	land_plots: state.villages.land_plots,
 })
 
-export default connect(mapStateToProps, { register })(Registration)
+export default connect(mapStateToProps, { register, getVillages, getStreets, getLandPlots })(Registration)

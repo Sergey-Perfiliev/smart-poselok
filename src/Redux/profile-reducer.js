@@ -7,34 +7,7 @@ const CHANGE_USER_INFO = 'CHANGE_USER_INFO'
 const DELETE_USER = 'DELETE_USER'
 
 let initialState = {
-	profile: {
-		email: 'test@test.com',
-		first_name: 'Bob',
-		id: 4,
-		patronymic: null,
-		roles: [
-			{
-				village_id: 4,
-				role: {
-					is_admin: true,
-					is_owner: false,
-					villager: {
-						representative: 47
-					}
-				}
-			},
-			{
-				village_id: 7,
-				role: {
-					is_admin: false,
-					villager: {
-						resident: 55
-					}
-				}
-			}
-		],
-		last_name: 'Doe'
-	},
+	profile: null,
 	neighbours: [
 		{ id: 0, name: "Name" },
 		{ id: 15, name: "Alex" },
@@ -188,7 +161,10 @@ export const getSelfProfile = () => {
 	return async (dispatch) => {
 		let response = await profileAPI.getSelfProfile()
 
-		dispatch(setUserProfile(response))
+		if (response.status === 200) {
+			console.log(response)
+			dispatch(setUserProfile(response))
+		}
 	}
 }
 

@@ -1,22 +1,13 @@
+import { villageApi } from "../API/api"
+
 const SET_VILLAGES = 'GET_VILLAGES'
 const SET_STREETS = 'SET_STREETS'
 const SET_LAND_PLOTS = 'SET_LAND_PLOTS'
 
 const initialState = {
-	villages: [
-		{ id: 4, name: 'Посёлок 1' },
-		{ id: 7, name: 'Посёлок 2' },
-	],
-	streets: [
-		{ id: 1, name: 'Первая' },
-		{ id: 2, name: 'Вторая' },
-		{ id: 3, name: 'Третья' },
-	],
-	land_plots: [
-		{ id: 1, name: '1' },
-		{ id: 2, name: '2' },
-		{ id: 3, name: '3' },
-	],
+	villages: [],
+	streets: [],
+	land_plots: [],
 }
 
 const VillagerReducer = (state = initialState, action) => {
@@ -56,24 +47,36 @@ export const setLandPlots = (land_plots) => ({
 	type: SET_STREETS, land_plots
 })
 
-export const getVillages = (villages) => {
+export const getVillages = () => {
 	return async (dispatch) => {
-		dispatch(setVillages(villages))
-		dispatch(setStreets(null))
-		dispatch(setLandPlots(null))
+		let response = await villageApi.getVillages()
+
+		if (response.status === 200) {
+			dispatch(setVillages(response.data))
+			dispatch(setStreets(null))
+			dispatch(setLandPlots(null))
+		}
 	}
 }
 
-export const getStreets = (streets) => {
+export const getStreets = (villageId) => {
 	return async (dispatch) => {
-		dispatch(setStreets(streets))
-		setLandPlots(null)
+		let response = await villageApi.getStreets(villageId)
+		if (response.status === 200) {
+			dispatch(setStreets(response.data))
+			dispatch(setLandPlots(null))
+		}
 	}
 }
 
-export const getLandPlots = (land_plots) => {
+export const getLandPlots = (street_id) => {
 	return async (dispatch) => {
-		dispatch(setLandPlots(land_plots))
+		let response = await villageApi.getLandPlots(street_id)
+
+		if (response.status === 200) {
+			dispatch(setLandPlots(response.data))
+			setLandPlots(null)
+		}
 	}
 }
 

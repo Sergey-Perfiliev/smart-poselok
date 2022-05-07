@@ -8,7 +8,6 @@ import Auth from '../Auth';
 import { AuthTextField } from '../AuthFields'
 import '../Auth.scss'
 
-
 const validationSchema = yup.object({
 	email: yup
 		.string()

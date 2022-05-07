@@ -3,17 +3,11 @@ import React from 'react'
 import { TextField, CircularProgress } from '@mui/material';
 import { AuthAutocomplete } from '../Auth/AuthFields';
 
-function sleep(delay = 0) {
-	return new Promise((resolve) => {
-		setTimeout(resolve, delay);
-	});
-}
-
 const AsyncAutoComplete = ({ data, label, value, disabled, onChange, required = true, query, width = 100 }) => {
 	const [open, setOpen] = React.useState(false);
 	const [options, setOptions] = React.useState([]);
 	const loading = open && options.length === 0;
-	
+
 	React.useEffect(() => {
 		let active = true;
 
@@ -21,19 +15,16 @@ const AsyncAutoComplete = ({ data, label, value, disabled, onChange, required = 
 			return undefined;
 		}
 
-		(async () => {
-			// query
-			await sleep(300)
+		query()
 
-			if (active) {
-				setOptions([...data]);
-			}
-		})();
+		if (active && data) {
+			setOptions([...data])
+		}
 
 		return () => {
 			active = false;
 		};
-	}, [loading]);
+	}, [loading, data]);
 
 	React.useEffect(() => {
 		if (!open) {

@@ -9,7 +9,7 @@ const Profile = (props) => {
 	const { neighbours, vote, villages, streets, setNewVote } = props
 	const { email, roles } = props.profile
 	const [currentProfileVillage, setCurrentProfileVillage] = React.useState(villages[0])
-	
+	console.log(villages)
 	const villageRole = roles.filter(el => el.village_id === currentProfileVillage.id)[0]
 	let isVillager = !!villageRole.role.villager && !!Object.keys(villageRole.role.villager)
 	let voteEnabled = isVillager ? Object.keys(villageRole.role.villager)[0] === 'representative' : false
