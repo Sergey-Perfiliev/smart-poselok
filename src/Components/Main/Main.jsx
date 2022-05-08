@@ -7,36 +7,38 @@ import Profile from '../Profile/Profile'
 
 const Main = (props) => {
 	React.useEffect(() => {
-		getSelfProfile(props.token)
-	
-		return () => {}
-	}, [props.token])
-	
+		props.getSelfProfile(props.token)
+	}, [])
+
 	return (
-		<>
-			<Header 
-				email={props.profile.email} 
-				signOut={props.signOut} 
-			/>
-			<Profile
-				profile={props.profile} 
-				neighbours={props.neighbours} 
-				vote={props.vote}
-				villages={props.villages}
-				streets={props.streets}
-				setNewVote={props.setNewVote}
-			/>
-		</>
+		<div>
+			{
+				!!props.profile && !!props.villages.length && <div>
+					<Header
+						email={props.profile.email}
+						signOut={props.signOut}
+					/>
+					<Profile
+						profile={props.profile}
+						neighbours={props.neighbours}
+						vote={props.vote}
+						villages={props.villages}
+						streets={props.streets}
+						setNewVote={props.setNewVote}
+					/>
+				</div >
+			}
+		</div>
 	)
 }
 
 const mapStateToProps = (state) => ({
 	profile: state.profile.profile,
 	token: state.auth.token,
-	villages: state.villages.villages,
-	streets: state.villages.streets,
+	villages: state.village.villages,
+	streets: state.village.streets,
 	neighbours: state.profile.neighbours,
 	vote: state.profile.currentVote
 })
 
-export default connect(mapStateToProps, {getSelfProfile, signOut, setNewVote})(Main)
+export default connect(mapStateToProps, { getSelfProfile, signOut, setNewVote })(Main)

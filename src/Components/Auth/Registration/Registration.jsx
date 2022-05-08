@@ -192,9 +192,9 @@ const Registration = (props) => {
 
 const mapStateToProps = (state) => ({
 	isAuth: state.auth.isAuth,
-	villages: state.villages.villages,
-	streets: state.villages.streets,
-	land_plots: state.villages.land_plots,
+	villages: state.village.villages,
+	streets: state.village.streets,
+	land_plots: state.village.land_plots,
 })
 
 export default connect(mapStateToProps, { register, getVillages, getStreets, getLandPlots })(Registration)

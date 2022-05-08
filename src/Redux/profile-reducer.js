@@ -1,4 +1,5 @@
 import { profileAPI } from "../API/api"
+import { getVillages } from "./village-reducer"
 
 const SET_USER_PROFILE = 'SET_USER_PROFILE'
 const SET_NEIGHBOURS = 'SET_NEIGHBOURS'
@@ -72,32 +73,14 @@ let initialState = {
 			],
 		},
 	],
-	villagers: [
-		{
-			id: 1,
-			email: "ivan@outlook.com",
-			last_name: 'Иолафь',
-			first_name: 'Иван',
-			patronymic: 'Иванович',
-			role: 'resident',
-		},
-		{
-			id: 5,
-			email: "sergey@rambler.com",
-			last_name: 'Иигфлаг',
-			first_name: 'Сергей',
-			patronymic: 'Потапович',
-			role: 'representative'
-		},
-	],
 	error: null,
 	loading: false,
 }
 
 const ProfileReducer = (state = initialState, action) => {
 	switch (action.type) {
-		case SET_USER_PROFILE: 
-		return {
+		case SET_USER_PROFILE:
+			return {
 				...state,
 				profile: action.profile
 			}
@@ -133,7 +116,7 @@ const ProfileReducer = (state = initialState, action) => {
 			}
 
 		default:
-			return initialState
+			return state
 	}
 }
 
@@ -157,13 +140,14 @@ export const deleteVillagerAC = (villagerId) => ({
 	type: DELETE_USER, villagerId
 })
 
-export const getSelfProfile = () => {
+export const getSelfProfile = (token) => {
 	return async (dispatch) => {
-		let response = await profileAPI.getSelfProfile()
+		let response = await profileAPI.getProfile(token)
+		console.log('GET PROFILE RESPONES', response)
+		dispatch(getVillages())
 
 		if (response.status === 200) {
-			console.log(response)
-			dispatch(setUserProfile(response))
+			dispatch(setUserProfile(response.data))
 		}
 	}
 }

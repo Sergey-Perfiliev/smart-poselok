@@ -1,4 +1,3 @@
-import axios from "axios"
 import { authApi } from "../API/api"
 
 // action.types
@@ -25,7 +24,7 @@ const AuthReducer = (state = initialState, action) => {
 			}
 
 		default:
-			return initialState
+			return state
 	}
 }
 
@@ -39,14 +38,14 @@ export const login = (email, password) => {
 		let response = await authApi.login(email, password)
 
 		if (response.status === 200) {
-			dispatch(setAuthUserData(email, response.data.userId, response.data.token, true))
+			dispatch(setAuthUserData(email, response.data.user_id, response.data.token, true))
 		}
 		// if (response.status === 400)
 		//  dispatch(setError(response.errorMessage))
 
 		// localStorage.setItem('email', email);
-		// localStorage.setItem('userId', authTokenData.user_id);
-		// localStorage.setItem('token', token);
+		// localStorage.setItem('userId', response.data.user_id);
+		// localStorage.setItem('token', response.data.token);
 		// localStorage.setItem('isAuth', true);
 	}
 }
@@ -71,17 +70,17 @@ export const register = (email, firstName, lastName, patronymic, password, landP
 	}
 }
 
-export const loginTest = (user) => {
-	return async (dispatch) => {
-		dispatch(setAuthUserData(user.email, user.password))
-		const res = await axios.post('/user/login', user)
-		return res.data
-	}
-}
+// export const loginTest = (user) => {
+// 	return async (dispatch) => {
+// 		dispatch(setAuthUserData(user.email, user.password))
+// 		const res = await axios.post('/user/login', user)
+// 		return res.data
+// 	}
+// }
 
 export const signOut = () => {
 	return async (dispatch) => {
-		dispatch(setAuthUserData(false, false, false))
+		dispatch(setAuthUserData(null, null, null, null))
 	}
 }
 

@@ -8,9 +8,27 @@ const initialState = {
 	villages: [],
 	streets: [],
 	land_plots: [],
+	villagers: [
+		{
+			id: 1,
+			email: "ivan@outlook.com",
+			last_name: 'Иолафь',
+			first_name: 'Иван',
+			patronymic: 'Иванович',
+			role: 'resident',
+		},
+		{
+			id: 5,
+			email: "sergey@rambler.com",
+			last_name: 'Иигфлаг',
+			first_name: 'Сергей',
+			patronymic: 'Потапович',
+			role: 'representative'
+		},
+	],
 }
 
-const VillagerReducer = (state = initialState, action) => {
+const VillageReducer = (state = initialState, action) => {
 	switch (action.type) {
 		case SET_VILLAGES:
 			return {
@@ -31,7 +49,7 @@ const VillagerReducer = (state = initialState, action) => {
 			}
 
 		default:
-			return initialState
+			return state
 	}
 }
 
@@ -44,7 +62,7 @@ export const setStreets = (streets) => ({
 })
 
 export const setLandPlots = (land_plots) => ({
-	type: SET_STREETS, land_plots
+	type: SET_LAND_PLOTS, land_plots
 })
 
 export const getVillages = () => {
@@ -80,4 +98,4 @@ export const getLandPlots = (street_id) => {
 	}
 }
 
-export default VillagerReducer
+export default VillageReducer

@@ -7,15 +7,10 @@ const instance = axios.create({
 export const profileAPI = {
 	getUser(id) {
 		return instance.get(`user/${id}`)
-			.then(response => {
-				return response.data
-			})
 	},
 	getProfile(token) {
-		return instance.get(`user/self`, { token })
-			.then(response => {
-				return response.data
-			})
+		return instance.get(`user/self`,
+			{ headers: { "Authorization": `Bearer ${token}` } })
 	}
 }
 

@@ -26,17 +26,16 @@ const Login = (props) => {
 			password: props.password || ''
 		},
 		validationSchema: validationSchema,
-		onSubmit: (values, { login, setSubmitting }) => {
-			setSubmitting(true)
-			// async call
-			console.log(values)
+		onSubmit: (values) => {
+			console.log('AUTH', values)
 			props.login(values.email, values.password)
-			setSubmitting(false)
 		}
 	})
-
-	if (props.isAuth)
-		return <Navigate to={"/"} />
+	
+	if (props.isAuth) {
+		console.log('NAVIGATE TO /')
+		return <Navigate to="/" />
+	}
 
 	return (
 		<Auth title={'Вход'}>
@@ -78,8 +77,6 @@ const Login = (props) => {
 	)
 }
 
-const mapStateToProps = (state) => ({
-	isAuth: state.auth.isAuth
-})
+const mapStateToProps = () => ({})
 
 export default connect(mapStateToProps, { login })(Login)

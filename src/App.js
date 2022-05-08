@@ -1,6 +1,6 @@
 import './App.scss';
 import {
-  BrowserRouter as Router,
+  BrowserRouter,
   Route,
 	Routes,
 } from "react-router-dom";
@@ -21,7 +21,7 @@ const App = (props) => {
 			<Route exact path='/' element={<PrivateRoute isAuth={props.isAuth} component={Main} />} />
 			<Route exact path='/votes' element={<PrivateRoute isAuth={props.isAuth} component={Votes} />} />
 			<Route exact path='/villagers' element={<PrivateRoute isAuth={props.isAuth} component={Villagers} />} />
-			<Route exact path="/login" element={<Login />} />
+			<Route exact path="/login" element={<Login isAuth={props.isAuth} />} />
 			<Route exact path="/registration" element={<Registration />} />
 		</Routes>
 	)
@@ -33,13 +33,13 @@ const mapStateToProps = (state) => ({
 
 const AppContainer = connect(mapStateToProps, {})(App)
 
-const SmartPoselokApp = (props) => {
+const SmartPoselokApp = () => {
   return (
-    <Router>
+    <BrowserRouter>
 			<Provider store={store}>
       	<AppContainer />
 			</Provider>
-		</Router>
+		</BrowserRouter>
   );
 }
 

@@ -31,7 +31,7 @@ const Villagers = (props) => {
 
 const mapStateToProps = (state) => ({
 	email: state.auth.email,
-	villagers: state.profile.villagers,
+	villagers: state.village.villagers,
 })
 
 export default connect(mapStateToProps, { signOut, deleteVillager, changeVillagerInfo })(Villagers)
