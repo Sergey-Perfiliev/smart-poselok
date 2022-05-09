@@ -2,12 +2,6 @@ import React from 'react'
 import AsyncSelect from 'react-select';
 import colors from '../../colors.scss'
 
-function sleep(delay = 0) {
-	return new Promise((resolve) => {
-		setTimeout(resolve, delay);
-	});
-}
-
 const customStyles = {
 	control: (provided, state) => ({
 		...provided,
@@ -39,10 +33,11 @@ const CustomAsyncSelect = ({ data, value, onChange, placeholder = 'Выбери�
 		if (!loading) {
 			return undefined;
 		}
-
+		
 		query()
+		console.log(query)
 
-		if (active) {
+		if (active && data) {
 			setOptions([...data]);
 		}
 

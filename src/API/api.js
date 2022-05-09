@@ -32,7 +32,6 @@ export const authApi = {
 			{ headers: { "Authorization": `Bearer ${token}` } })
 	},
 	pendingVillager(villageId, payload, token) {
-		console.log('token', token)
 		return instance.post(`village/${villageId}/pending_villager`,
 			payload,
 			{ headers: { "Authorization": `Bearer ${token}` } },
@@ -49,5 +48,23 @@ export const villageApi = {
 	},
 	getLandPlots(street_id) {
 		return instance.get(`/street/${street_id}/land_plot`)
+	},
+	createVillage(name, token) {
+		return instance.post(`/village`,
+			{ name },
+			{ headers: { "Authorization": `Bearer ${token}` } }
+		)
+	},
+	createStreet(villageId, name, token) {
+		return instance.post(`/village/${villageId}/street`,
+			{ name },
+			{ headers: { "Authorization": `Bearer ${token}` } }
+		)
+	},
+	createLandPlot(streetId, name, token) {
+		return instance.post(`/street/${streetId}/land_plot`,
+			{ name },
+			{ headers: { "Authorization": `Bearer ${token}` } }
+		)
 	}
 }

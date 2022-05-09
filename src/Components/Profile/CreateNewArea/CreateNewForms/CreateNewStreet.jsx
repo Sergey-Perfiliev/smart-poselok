@@ -1,19 +1,15 @@
 import { useFormik } from 'formik';
 import React from 'react'
-import CustomAsyncSelect from '../../../Common/CustomAsyncSelect';
 
-const CreateNewStreet = ({ handleCreateStreet, villages, setCreateStreetMode }) => {
+const CreateNewStreet = ({ handleCreateStreet, currentVillage, setCreateStreetMode, token }) => {
 	const formik = useFormik({
 		initialValues: {
-			village: '',
 			street: '',
 		},
-		onSubmit: (values, { createStreet, setSubmitting }) => {
-			setSubmitting(true)
+		onSubmit: (values) => {
 			//async call
-			handleCreateStreet()
-			console.log(values)
-			setSubmitting(false)
+			handleCreateStreet(currentVillage.id, values.street, token)
+			console.log(values, currentVillage)
 		}
 	})
 
@@ -23,12 +19,6 @@ const CreateNewStreet = ({ handleCreateStreet, villages, setCreateStreetMode }) 
 				Создать новую улицу
 				<span onClick={() => setCreateStreetMode(false)} className='delete-cross delete-cross-title delete-cross-title__new-area'>×</span>
 			</h3>
-			<CustomAsyncSelect
-				value={formik.values.village}
-				onChange={value=> formik.setFieldValue('village', value)}
-				data={villages}
-				placeholder={'Посёлок'}
-			/>
 			<div className='input-wrapper input-wrapper__create-area'>
 				<input
 					name='street'
@@ -38,6 +28,7 @@ const CreateNewStreet = ({ handleCreateStreet, villages, setCreateStreetMode }) 
 					value={formik.values.street}
 					className='popup-input'
 					autoFocus
+					required
 				/>
 			</div>
 			<button type='submit' className='btn btn-profile btn-popup btn-popup--submit'>Создать</button>

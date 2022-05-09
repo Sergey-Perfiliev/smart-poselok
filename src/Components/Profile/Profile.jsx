@@ -3,7 +3,8 @@ import ProfileProcessing from './Roles/ProfileProcessing'
 import './_profile.scss'
 import ProfileAdministrator from './Roles/ProfileAdministrator'
 import ProfileVillager from './Roles/ProfileVillager'
-import SyncAutoComplete from '../Common/SyncAutoComplete'
+import AsyncAutoComplete from '../Common/SyncAutoComplete'
+import CustomAsyncSelect from '../Common/CustomAsyncSelect'
 
 const Profile = (props) => {
 	console.log('PROFILE', props)
@@ -11,6 +12,8 @@ const Profile = (props) => {
 	const { email, roles } = props.profile
 
 	const availableVillages = villages.length > 0 && villages.filter(v => {
+		console.log('villages', villages)
+		console.log('roles', roles)
 		return roles.map(obj => obj.village_id).includes(v.id)
 	})
 	//console.log(availableVillages[0])
@@ -26,22 +29,23 @@ const Profile = (props) => {
 
 	let isVillager = !!villageRole?.length && !!villageRole[0]?.role?.villager //&& !!Object.keys(villageRole[0]?.role?.villager)
 	let voteEnabled = isVillager ? Object.keys(villageRole[0]?.role?.villager) === 'representative' : false
-	let isAdmin = !!villageRole[0]?.role.is_admin 
+	let isAdmin = !!villageRole[0]?.role.is_admin
 	let isOwner = !!villageRole[0]?.role.is_owner
 
 	// log
 	// console.log(villageRole, isOwner, roles.length)
-
+	console.log(villages)
 	return (
 		<div className='profile'>
 			{
 				roles.length > 1 && <div className='profile-variant'>
-					<SyncAutoComplete
+					<AsyncAutoComplete
 						data={availableVillages}
-						// defaultValue={villages[0]}
-						onChange={setCurrentProfileVillage}
+						query={() => props.getVillages()}
 						label='Посёлок'
-						disableClearable={true}
+						value={currentProfileVillage}
+						onChange={setCurrentProfileVillage}
+						disabled={false}
 						required={false}
 					/>
 				</div>
@@ -60,6 +64,7 @@ const Profile = (props) => {
 						villages={villages}
 						streets={streets}
 						setNewVote={setNewVote}
+						currentVillage={currentProfileVillage}
 					/>
 				}
 				{
@@ -68,6 +73,7 @@ const Profile = (props) => {
 						neighbours={neighbours}
 						enabled={voteEnabled}
 						vote={vote}
+						currentVillage={currentProfileVillage}
 					/>
 				}
 			</div>

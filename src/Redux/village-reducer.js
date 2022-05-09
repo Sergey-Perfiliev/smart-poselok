@@ -1,6 +1,7 @@
-import { villageApi } from "../API/api"
+import { profileAPI, villageApi } from "../API/api"
+import { getSelfProfile } from "./profile-reducer"
 
-const SET_VILLAGES = 'GET_VILLAGES'
+const SET_VILLAGES = 'SET_VILLAGES'
 const SET_STREETS = 'SET_STREETS'
 const SET_LAND_PLOTS = 'SET_LAND_PLOTS'
 
@@ -77,6 +78,17 @@ export const getVillages = () => {
 	}
 }
 
+export const createVillage = (villageName, token) => {
+	return async (dispatch) => {
+		let response = await villageApi.createVillage(villageName, token)
+		let responseSelfProfile = await profileAPI.getProfile(token) 
+
+		if (responseSelfProfile.status === 200) {
+		  dispatch(getSelfProfile(token))
+		}
+	}
+}
+
 export const getStreets = (villageId) => {
 	return async (dispatch) => {
 		let response = await villageApi.getStreets(villageId)
@@ -84,6 +96,14 @@ export const getStreets = (villageId) => {
 			dispatch(setStreets(response.data))
 			dispatch(setLandPlots(null))
 		}
+	}
+}
+
+export const createStreet = (villageId, streetName, token) => {
+	return async (dispatch) => {
+		let response = await villageApi.createStreet(villageId, streetName, token)
+
+		if (response.status === 200) return
 	}
 }
 
@@ -95,6 +115,15 @@ export const getLandPlots = (street_id) => {
 			dispatch(setLandPlots(response.data))
 			setLandPlots(null)
 		}
+	}
+}
+
+// landPlotName
+export const createLandPlot = (streetId, landPlotName, token) => {
+	return async (dispatch) => {
+		let response = await villageApi.createLandPlot(streetId, landPlotName, token)
+
+		if (response.status === 200) return
 	}
 }
 

@@ -9,22 +9,24 @@ const AsyncAutoComplete = ({ data, label, value, disabled, onChange, required = 
 	const loading = open && options.length === 0;
 
 	React.useEffect(() => {
-		let active = true;
+    let active = true;
 
-		if (!loading) {
-			return undefined;
-		}
+    if (!loading) {
+      return undefined;
+    }
 
-		query()
+    (() => {
+      query();
 
-		if (active && data) {
-			setOptions([...data])
-		}
+      if (active && data) {
+        setOptions([...data]);
+      }
+    })();
 
-		return () => {
-			active = false;
-		};
-	}, [loading, data]);
+    return () => {
+      active = false;
+    };
+  }, [loading, data, query]);
 
 	React.useEffect(() => {
 		if (!open) {

@@ -1,17 +1,16 @@
 import { useFormik } from 'formik'
 import React from 'react'
 
-const CreateNewVillage = ({ handleCreateVillage, setCreateVillageMode, villages }) => {
+const CreateNewVillage = ({ handleCreateVillage, setCreateVillageMode, token }) => {
+	console.log(token)
 	const formik = useFormik({
 		initialValues: {
 			village: '',
 		},
-		onSubmit: (values, { createStreet, setSubmitting }) => {
-			setSubmitting(true)
+		onSubmit: (values) => {
 			//async call
-			handleCreateVillage()
+			handleCreateVillage(values.village, token)
 			console.log(values)
-			setSubmitting(false)
 		}
 	})
 
@@ -30,6 +29,7 @@ const CreateNewVillage = ({ handleCreateVillage, setCreateVillageMode, villages 
 					value={formik.values.village}
 					className='popup-input'
 					autoFocus
+					required
 				/>
 			</div>
 			<button type='submit' className='btn btn-profile btn-popup btn-popup--submit'>Создать</button>

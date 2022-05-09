@@ -4,6 +4,7 @@ import Header from '../Header/Header'
 import { signOut } from '../../Redux/auth-reducer'
 import { getSelfProfile, setNewVote } from '../../Redux/profile-reducer'
 import Profile from '../Profile/Profile'
+import { getVillages } from '../../Redux/village-reducer'
 
 const Main = (props) => {
 	React.useEffect(() => {
@@ -25,6 +26,7 @@ const Main = (props) => {
 						villages={props.villages}
 						streets={props.streets}
 						setNewVote={props.setNewVote}
+						getVillages={props.getVillages}
 					/>
 				</div >
 			}
@@ -41,4 +43,4 @@ const mapStateToProps = (state) => ({
 	vote: state.profile.currentVote
 })
 
-export default connect(mapStateToProps, { getSelfProfile, signOut, setNewVote })(Main)
+export default connect(mapStateToProps, { getSelfProfile, getVillages, signOut, setNewVote })(Main)

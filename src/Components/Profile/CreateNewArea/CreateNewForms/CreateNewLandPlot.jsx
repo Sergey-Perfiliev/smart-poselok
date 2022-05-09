@@ -1,23 +1,22 @@
 import { useFormik } from 'formik'
 import React from 'react'
-import AsyncAutoComplete from '../../../Common/AsyncAutoComplete'
 import CustomAsyncSelect from '../../../Common/CustomAsyncSelect'
 
-const CreateNewLandPlot = ({ handleCreateLandPlot, villages, streets, setCreateLandPlotMode }) => {
+
+
+const CreateNewLandPlot = ({ getStreets, handleCreateLandPlot, currentVillage, streets, setCreateLandPlotMode, token }) => {
 	const formik = useFormik({
 		initialValues: {
-			village: '',
 			street: '',
 			land_plot: ''
 		},
-		onSubmit: (values, { CreateNewLandPlot, setSubmitting }) => {
-			setSubmitting(true)
+		onSubmit: (values) => {
 			//async call
-			handleCreateLandPlot()
-			console.log(values)
-			setSubmitting(false)
+			handleCreateLandPlot(values.street.id, values.land_plot, token)
+			console.log(values.street.id, values.land_plot, token)
 		}
 	})
+	console.log(currentVillage, streets, getStreets)
 
 	return (
 		<form onSubmit={formik.handleSubmit}>
@@ -27,16 +26,12 @@ const CreateNewLandPlot = ({ handleCreateLandPlot, villages, streets, setCreateL
 			</h3>
 			<div className='select-wrapper'>
 				<CustomAsyncSelect
-					value={formik.values.village}
-					onChange={value => formik.setFieldValue('village', value)}
-					data={villages}
-					placeholder={'Посёлок'}
-				/>
-				<CustomAsyncSelect
 					value={formik.values.street}
 					onChange={value => formik.setFieldValue('street', value)}
 					data={streets}
+					query={() => getStreets(currentVillage.id)}
 					placeholder={'Улица'}
+					required
 				/>
 			</div>
 			<div className='input-wrapper input-wrapper__create-area'>
@@ -47,7 +42,9 @@ const CreateNewLandPlot = ({ handleCreateLandPlot, villages, streets, setCreateL
 					onChange={formik.handleChange}
 					value={formik.values.land_plot}
 					className='popup-input'
-					autoFocus />
+					autoFocus
+					required
+				/>
 			</div>
 			<button type='submit' className='btn btn-profile btn-popup btn-popup--submit'>Создать</button>
 		</form>

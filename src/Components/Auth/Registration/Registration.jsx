@@ -99,6 +99,7 @@ const Registration = (props) => {
 						onChange={formik.handleChange}
 						error={formik.touched.email && Boolean(formik.errors.email)}
 						helperText={formik.touched.email && formik.errors.email}
+						required
 					/>
 				</div>
 				<div className='form-inputWrapper'>
@@ -111,6 +112,7 @@ const Registration = (props) => {
 						onChange={formik.handleChange}
 						error={formik.touched.password && Boolean(formik.errors.password)}
 						helperText={formik.touched.password && formik.errors.password}
+						required
 					/>
 				</div>
 				<div className='form-inputWrapper'>
@@ -122,6 +124,7 @@ const Registration = (props) => {
 						onChange={formik.handleChange}
 						error={formik.touched.lastName && Boolean(formik.errors.lastName)}
 						helperText={formik.touched.lastName && formik.errors.lastName}
+						required
 					/>
 				</div>
 				<div className='form-inputWrapper'>
@@ -133,6 +136,7 @@ const Registration = (props) => {
 						onChange={formik.handleChange}
 						error={formik.touched.firstName && Boolean(formik.errors.firstName)}
 						helperText={formik.touched.firstName && formik.errors.firstName}
+						required
 					/>
 				</div>
 				<div className='form-inputWrapper'>
@@ -142,10 +146,11 @@ const Registration = (props) => {
 						label="Отчество"
 						value={formik.values.patronymic}
 						onChange={formik.handleChange}
+						required
 					/>
 				</div>
 				<div className='form-inputWrapper'>
-					<FormControl sx={{ width: '100%' }}>
+					<FormControl sx={{ width: '100%' }} required>
 						<InputLabel id="role-multiple-checkbox-label">Роль</InputLabel>
 						<Select
 							labelId="role-multiple-checkbox-label"
