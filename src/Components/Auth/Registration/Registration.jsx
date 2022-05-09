@@ -184,6 +184,7 @@ const Registration = (props) => {
 					<AsyncAutoComplete data={streets} query={() => props.getStreets(village?.id)} label={'Улица'} width='47' value={street} onChange={setStreet} disabled={!disabledValue || !village} />
 					<AsyncAutoComplete data={land_plots} query={() => props.getLandPlots(street?.id)} label={'Дом'} width='47' value={landPlot} onChange={setLandPlot} disabled={!disabledValue || !street} />
 				</div>
+				{props.error && <div className='auth-error'>{props.error}</div>}
 				<div className='auth-buttons'>
 					<Link to={'/login'} className='btn btn-profile'>Назад</Link>
 					<button className='btn btn-profile' type="submit">
@@ -200,6 +201,7 @@ const mapStateToProps = (state) => ({
 	villages: state.village.villages,
 	streets: state.village.streets,
 	land_plots: state.village.land_plots,
+	error: state.auth.registerError
 })
 
 export default connect(mapStateToProps, { register, getVillages, getStreets, getLandPlots })(Registration)

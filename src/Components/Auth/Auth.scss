@@ -38,6 +38,11 @@
 			margin-top: 12px;
 		}
 	}
+
+	&-error {
+		padding: 8px 0 0 8px;
+		color: $error;	
+	}
 }
 
 .auth-buttons {

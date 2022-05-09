@@ -22,18 +22,18 @@ const validationSchema = yup.object({
 const Login = (props) => {
 	const formik = useFormik({
 		initialValues: {
-			email: props.email || 'ser@gmail.com',
-			password: props.password || ''
+			email: '',
+			password: '',
 		},
 		validationSchema: validationSchema,
-		onSubmit: (values) => {
-			console.log('AUTH', values)
+		onSubmit: (values, { setSubmitting }) => {
+			// async call
 			props.login(values.email, values.password)
+				.then(() => setSubmitting(false))
 		}
 	})
-	
+
 	if (props.isAuth) {
-		console.log('NAVIGATE TO /')
 		return <Navigate to="/" />
 	}
 
@@ -47,7 +47,7 @@ const Login = (props) => {
 						label="Email"
 						value={formik.values.email}
 						onChange={formik.handleChange}
-						error={formik.touched.email && Boolean(formik.errors.email)}
+						error={Boolean(props.error) || (formik.touched.email && Boolean(formik.errors.email))}
 						helperText={formik.touched.email && formik.errors.email}
 						InputProps={{
 							style: {}
@@ -62,13 +62,15 @@ const Login = (props) => {
 						type="password"
 						value={formik.values.password}
 						onChange={formik.handleChange}
-						error={formik.touched.password && Boolean(formik.errors.password)}
+						error={Boolean(props.error) || (formik.touched.password && Boolean(formik.errors.password))}
 						helperText={formik.touched.password && formik.errors.password}
 					/>
 				</div>
+				{console.log(formik.isSubmitting)}
+				{props.error && <div className='auth-error'>{props.error}</div>}
 				<div className='auth-buttons'>
-					<Link to={'/registration'} className='btn btn-profile'>Создать аккаунт</Link>
-					<button className='btn btn-profile' type="submit">
+					<Link to={formik.isSubmitting ? '#' : '/registration'} className='btn btn-profile'>Создать аккаунт</Link>
+					<button className='btn btn-profile' type="submit" disabled={formik.isSubmitting}>
 						Войти
 					</button>
 				</div>
@@ -77,6 +79,8 @@ const Login = (props) => {
 	)
 }
 
-const mapStateToProps = () => ({})
+const mapStateToProps = (state) => ({
+	error: state.auth.loginError
+})
 
 export default connect(mapStateToProps, { login })(Login)
