@@ -83,7 +83,7 @@ export const createVillage = (villageName, token) => {
 		let response = await villageApi.createVillage(villageName, token)
 		let responseSelfProfile = await profileAPI.getProfile(token) 
 
-		if (responseSelfProfile.status === 200) {
+		if (response.status === 200 && responseSelfProfile.status === 200) {
 		  dispatch(getSelfProfile(token))
 		}
 	}

@@ -29,7 +29,7 @@ const Login = (props) => {
 		onSubmit: (values, { setSubmitting }) => {
 			// async call
 			props.login(values.email, values.password)
-				.then(() => setSubmitting(false))
+				.finally(() => setSubmitting(false))
 		}
 	})
 
@@ -66,7 +66,6 @@ const Login = (props) => {
 						helperText={formik.touched.password && formik.errors.password}
 					/>
 				</div>
-				{console.log(formik.isSubmitting)}
 				{props.error && <div className='auth-error'>{props.error}</div>}
 				<div className='auth-buttons'>
 					<Link to={formik.isSubmitting ? '#' : '/registration'} className='btn btn-profile'>Создать аккаунт</Link>

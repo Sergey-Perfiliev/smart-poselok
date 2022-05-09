@@ -1,6 +1,7 @@
 import { applyMiddleware, combineReducers, compose, createStore } from "redux";
 import thunk from "redux-thunk";
 import AuthReducer from "./auth-reducer";
+import NotificationReducer from "./notification-reducer";
 import ProfileReducer from "./profile-reducer";
 import VillageReducer from "./village-reducer";
 
@@ -9,6 +10,7 @@ let reducers = combineReducers({
 	auth: AuthReducer,
 	profile: ProfileReducer,
 	village: VillageReducer,
+	notification: NotificationReducer
 })
 
 // store with redux dev tools

@@ -1,7 +1,7 @@
 import './App.scss';
 import {
-  BrowserRouter,
-  Route,
+	BrowserRouter,
+	Route,
 	Routes,
 } from "react-router-dom";
 import Login from './Components/Auth/Login/Login';
@@ -14,33 +14,38 @@ import { connect } from 'react-redux';
 import 'normalize.css';
 import Votes from './Components/Votes/Votes';
 import Villagers from './Components/Villagers/Villagers';
+import Notifications from './Components/Common/Notification/Notifications';
 
 const App = (props) => {
 	return (
-		<Routes>
-			<Route exact path='/' element={<PrivateRoute isAuth={props.isAuth} component={Main} />} />
-			<Route exact path='/votes' element={<PrivateRoute isAuth={props.isAuth} component={Votes} />} />
-			<Route exact path='/villagers' element={<PrivateRoute isAuth={props.isAuth} component={Villagers} />} />
-			<Route exact path="/login" element={<Login isAuth={props.isAuth} />} />
-			<Route exact path="/registration" element={<Registration />} />
-		</Routes>
+		<>
+			<Notifications notifications={props.notifications} />
+			<Routes>
+				<Route exact path='/' element={<PrivateRoute isAuth={props.isAuth} component={Main} />} />
+				<Route exact path='/votes' element={<PrivateRoute isAuth={props.isAuth} component={Votes} />} />
+				<Route exact path='/villagers' element={<PrivateRoute isAuth={props.isAuth} component={Villagers} />} />
+				<Route exact path="/login" element={<Login isAuth={props.isAuth} />} />
+				<Route exact path="/registration" element={<Registration />} />
+			</Routes>
+		</>
 	)
 }
 
 const mapStateToProps = (state) => ({
-	isAuth: state.auth.isAuth
+	isAuth: state.auth.isAuth,
+	notifications: state.notification
 })
 
 const AppContainer = connect(mapStateToProps, {})(App)
 
 const SmartPoselokApp = () => {
-  return (
-    <BrowserRouter>
+	return (
+		<BrowserRouter>
 			<Provider store={store}>
-      	<AppContainer />
+				<AppContainer />
 			</Provider>
 		</BrowserRouter>
-  );
+	);
 }
 
 export default SmartPoselokApp;
