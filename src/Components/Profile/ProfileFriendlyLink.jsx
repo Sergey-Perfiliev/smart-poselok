@@ -4,7 +4,7 @@ const ProfileFriendlyLink = (props) => {
 	const handleCopy = (e) => {
 		try {
 			e.preventDefault()
-			let copyText = document.getElementsByClassName('profile__friendly-link-url')[0].textContent
+			let copyText = document.getElementsByClassName('profile__friendly-link__url')[0].textContent
 			navigator.clipboard.writeText(copyText)
 		}
 		catch (error) {

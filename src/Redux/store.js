@@ -4,13 +4,15 @@ import AuthReducer from "./auth-reducer";
 import NotificationReducer from "./notification-reducer";
 import ProfileReducer from "./profile-reducer";
 import VillageReducer from "./village-reducer";
+import VoteReducer from "./vote-reducer";
 
 // reducers
 let reducers = combineReducers({
 	auth: AuthReducer,
 	profile: ProfileReducer,
 	village: VillageReducer,
-	notification: NotificationReducer
+	notification: NotificationReducer,
+	vote: VoteReducer
 })
 
 // store with redux dev tools

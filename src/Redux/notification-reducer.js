@@ -27,10 +27,8 @@ export const addNotification = (type, message) => ({
 	}
 })
 
-export const removeNotification = (type, message) => ({
-	type: REMOVE_NOTIFICATION, payload: {
-		id: v4(), type, message
-	}
+export const removeNotification = (id) => ({
+	type: REMOVE_NOTIFICATION, id
 })
 
 export default NotificationReducer

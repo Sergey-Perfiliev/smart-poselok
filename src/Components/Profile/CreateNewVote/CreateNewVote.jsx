@@ -2,7 +2,7 @@ import React, { useState } from 'react'
 import Popup from 'reactjs-popup'
 import '../PopUp.scss'
 
-const CreateNewVote = ({ createNewVoteMode, setCreateNewVoteMode, setNewVote }) => {
+const CreateNewVote = ({ token, currentVillage, createNewVoteMode, setCreateNewVoteMode, createVote }) => {
 	const [titleValue, setTitleValue] = useState('')
 	const [inputList, setInputList] = useState([''])
 
@@ -29,10 +29,9 @@ const CreateNewVote = ({ createNewVoteMode, setCreateNewVoteMode, setNewVote }) 
 
 	const handleSubmit = (e) => {
 		e.preventDefault();
+		const options = inputList.map(el => el = { description: el })
+		createVote(currentVillage.id, { topic: titleValue, options }, token)
 		setCreateNewVoteMode(false)
-		const options = inputList.map(el => el = { id: Math.floor(Math.random() * 999), description: el })
-		setNewVote(titleValue, options)
-		console.log(titleValue, inputList);
 	}
 
 	const closeModal = () => {
@@ -50,7 +49,7 @@ const CreateNewVote = ({ createNewVoteMode, setCreateNewVoteMode, setNewVote }) 
 					<div className='popup-content__container'>
 						<h3 className='popup-content__container-title'>Тема опроса<span onClick={closeModal} className='delete-cross delete-cross-title'>×</span></h3>
 						<div className='input-wrapper'>
-							<input type="text" className='popup-input' value={titleValue} onChange={e => handleTitleValue(e)} />
+							<input type="text" className='popup-input' value={titleValue} onChange={e => handleTitleValue(e)} required />
 						</div>
 					</div>
 					<div className='popup-content__container'>
@@ -86,11 +85,15 @@ const CreateNewVote = ({ createNewVoteMode, setCreateNewVoteMode, setNewVote }) 
 					</div>
 
 					<div className="popup-footer">
-						<button className="btn btn-profile btn-popup btn-popup--submit" onClick={handleSubmit}>Создать</button>
+						<button
+							type="submit"
+							className="btn btn-profile btn-popup btn-popup--submit"
+							onClick={handleSubmit}
+						>Создать</button>
 					</div>
 				</form>
-			</div>
-		</Popup>
+			</div >
+		</Popup >
 	)
 }
 

@@ -68,3 +68,27 @@ export const villageApi = {
 		)
 	}
 }
+
+export const voteApi = {
+	createVote(villageId, vote, token) {
+		return instance.post(`/village/${villageId}/voting`,
+			{ vote },
+			{ headers: { "Authorization": `Bearer ${token}` } }
+		)
+	},
+	getVotes(villageId, token) {
+		return instance.get(`/village/${villageId}/voting`,
+			{ headers: { "Authorization": `Bearer ${token}` } }
+		)
+	},
+	getCurrentVote(villageId, token) {
+		return instance.get(`/village/${villageId}/voting/current`,
+			{ headers: { "Authorization": `Bearer ${token}` } }
+		)
+	},
+	vote(votingOptionId, token) {
+		return instance.post(`/village/voting_options/${votingOptionId}/vote`,
+			{ headers: { "Authorization": `Bearer ${token}` } }
+		)
+	}
+}

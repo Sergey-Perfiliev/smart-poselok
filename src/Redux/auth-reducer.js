@@ -1,5 +1,6 @@
 import axios from "axios"
 import { authApi } from "../API/api"
+import { addNotification } from "./notification-reducer"
 
 // action.types
 const SET_AUTH_USER_DATA = 'SET_AUTH_USER_DATA'
@@ -63,11 +64,12 @@ export const login = (email, password) => {
 				dispatch(setAuthUserData(email, response.data.user_id, response.data.token, true))
 			}
 		} catch (error) {
-			if (error.response.status === 403) {
-				dispatch(loginFailed('Неправильно введены данные'))
-				return
+			let errorMessage = "Произошла ошибка"
+			if (error?.response?.status === 403) {
+				errorMessage = 'Неправильно введены данные'
 			}
-			dispatch(loginFailed('Произошла ошибка'))
+			dispatch(loginFailed(errorMessage))
+			dispatch(addNotification("ERROR", errorMessage))
 		}
 	}
 }

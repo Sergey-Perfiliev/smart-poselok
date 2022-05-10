@@ -6,7 +6,7 @@ const ProfileVote = ({ vote, enabled }) => {
 	return (
 		<>
 			{
-				vote.id && <div className='profile__content-el profile__vote'>
+				vote?.id && <div className='profile__content-el profile__vote'>
 					<div className='profile__content-el__header profile__vote__header'>
 						<h3 className='profile__content-el__title profile__vote__title'>Текущее голосование</h3>
 						<Link to="/votes">Посмотреть предыдущие</Link>

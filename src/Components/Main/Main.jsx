@@ -2,9 +2,11 @@ import React from 'react'
 import { connect } from 'react-redux'
 import Header from '../Header/Header'
 import { signOut } from '../../Redux/auth-reducer'
-import { getSelfProfile, setNewVote } from '../../Redux/profile-reducer'
+import { getSelfProfile, setCurrentVillage } from '../../Redux/profile-reducer'
 import Profile from '../Profile/Profile'
 import { getVillages } from '../../Redux/village-reducer'
+import { createVote } from '../../Redux/vote-reducer'
+import { getCurrentVote } from '../../Redux/vote-reducer'
 
 const Main = (props) => {
 	React.useEffect(() => {
@@ -27,6 +29,11 @@ const Main = (props) => {
 						streets={props.streets}
 						setNewVote={props.setNewVote}
 						getVillages={props.getVillages}
+						createVote={props.createVote}
+						token={props.token}
+						currentVillage={props.currentVillage}
+						setCurrentVillage={props.setCurrentVillage}
+						getCurrentVote={props.getCurrentVote}
 					/>
 				</div >
 			}
@@ -35,12 +42,20 @@ const Main = (props) => {
 }
 
 const mapStateToProps = (state) => ({
-	profile: state.profile.profile,
 	token: state.auth.token,
+	profile: state.profile.profile,
+	currentVillage: state.profile.currentVillage,
+	neighbours: state.profile.neighbours,
 	villages: state.village.villages,
 	streets: state.village.streets,
-	neighbours: state.profile.neighbours,
-	vote: state.profile.currentVote
+	vote: state.vote.currentVote
 })
 
-export default connect(mapStateToProps, { getSelfProfile, getVillages, signOut, setNewVote })(Main)
+export default connect(mapStateToProps, {
+	getSelfProfile,
+	getVillages,
+	signOut,
+	createVote,
+	getCurrentVote,
+	setCurrentVillage
+})(Main)

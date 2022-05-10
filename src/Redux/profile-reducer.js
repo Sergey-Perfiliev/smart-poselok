@@ -3,6 +3,7 @@ import { getVillages } from "./village-reducer"
 
 const SET_USER_PROFILE = 'SET_USER_PROFILE'
 const SET_NEIGHBOURS = 'SET_NEIGHBOURS'
+const SET_CURRENT_VILLAGE = 'SET_CURRENT_VILLAGE'
 const ADD_VOTE = 'ADD_VOTE'
 const CHANGE_USER_INFO = 'CHANGE_USER_INFO'
 const DELETE_USER = 'DELETE_USER'
@@ -16,63 +17,7 @@ let initialState = {
 		{ id: 270, name: "Sergei" },
 		{ id: 986, name: "Antony" },
 	],
-	currentVote: {
-		id: 1,
-		title: 'Уборка территории',
-		is_active: true,
-		options: [
-			{
-				id: 15,
-				description: "Да",
-			},
-			{
-				id: 712,
-				description: "Нет",
-			}
-		]
-	},
-	votes: [
-		{
-			id: 6,
-			title: 'Ремонт площадки',
-			is_active: false,
-			options: [
-				{
-					id: 10,
-					description: "Да",
-					votes_number: 70
-				},
-				{
-					id: 11,
-					description: "Нет",
-					votes_number: 30
-				},
-			],
-		},
-		{
-			id: 15,
-			voted: 5,
-			title: 'Стройка забора',
-			is_active: false,
-			options: [
-				{
-					id: 5,
-					description: "Да",
-					votes_number: 30
-				},
-				{
-					id: 6,
-					description: "Нет",
-					votes_number: 50
-				},
-				{
-					id: 7,
-					description: "Воздержусь",
-					votes_number: 10
-				},
-			],
-		},
-	],
+	currentVillage: null,
 	error: null,
 	loading: false,
 }
@@ -86,6 +31,12 @@ const ProfileReducer = (state = initialState, action) => {
 			}
 
 		case SET_NEIGHBOURS:
+			return {
+				...state,
+				...action
+			}
+
+		case SET_CURRENT_VILLAGE:
 			return {
 				...state,
 				...action
@@ -124,8 +75,8 @@ export const setUserProfile = (profile) => ({
 	type: SET_USER_PROFILE, profile
 })
 
-export const addVote = (title, options) => ({
-	type: ADD_VOTE, newVote: { id: Math.random(), title, options }
+export const setCurrentVillage = (village) => ({
+	type: SET_CURRENT_VILLAGE, currentVillage: village
 })
 
 export const getNeighbours = (neighbours) => ({
@@ -149,12 +100,6 @@ export const getSelfProfile = (token) => {
 		if (response.status === 200) {
 			dispatch(setUserProfile(response.data))
 		}
-	}
-}
-
-export const setNewVote = (title, options) => {
-	return async (dispatch) => {
-		dispatch(addVote(title, options))
 	}
 }
 

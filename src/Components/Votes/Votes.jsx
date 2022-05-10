@@ -1,12 +1,17 @@
 import React from 'react'
 import { connect } from 'react-redux'
 import { signOut } from '../../Redux/auth-reducer'
+import { getVotes } from '../../Redux/vote-reducer'
 import Header from '../Header/Header'
 import Vote from '../Vote/Vote'
 
 const Votes = (props) => {
+	React.useEffect(() => {
+		props.getVotes(props?.currentVillage?.id, props?.token)
+	}, [props.currentVillage])
+
 	const votes = props.votes
-	const votesList = votes.length && votes.map(vote =>
+	const votesList = !!votes.length && votes.map(vote =>
 		<Vote
 			vote={vote}
 			isColorChange={true}
@@ -29,8 +34,10 @@ const Votes = (props) => {
 }
 
 const mapStateToProps = (state) => ({
+	token: state.auth.token,
 	email: state.auth.email,
-	votes: state.profile.votes
+	votes: state.vote.votes,
+	currentVillage: state.profile.currentVillage,
 })
 
-export default connect(mapStateToProps, { signOut })(Votes)
+export default connect(mapStateToProps, { signOut, getVotes })(Votes)

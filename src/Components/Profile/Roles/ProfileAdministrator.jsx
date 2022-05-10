@@ -9,10 +9,9 @@ import ProfileNeighbours from '../ProfileNeighbours'
 import ProfileViewVillagers from '../ProfileViewVillagers'
 import ProfileVote from '../ProfileVote'
 
-const ProfileAdministrator = ({ email, vote, enabled, villages, streets, isVillager, neighbours, setNewVote, currentVillage }) => {
+const ProfileAdministrator = ({ token, email, vote, enabled, villages, streets, isVillager, neighbours, currentVillage, createVote }) => {
 	const [createNewVoteMode, setCreateNewVoteMode] = useState(false)
 	const [createNewAreaMode, setCreateNewAreaMode] = useState(false)
-	console.log(currentVillage)
 
 	return (
 		<>
@@ -31,10 +30,11 @@ const ProfileAdministrator = ({ email, vote, enabled, villages, streets, isVilla
 			{isVillager && <ProfileNeighbours neighbours={neighbours} />}
 			{
 				createNewVoteMode && <CreateNewVote
-					setNewVote={setNewVote}
+					createVote={createVote}
 					createNewVoteMode={createNewVoteMode}
 					setCreateNewVoteMode={setCreateNewVoteMode}
 					currentVillage={currentVillage}
+					token={token}
 				/>
 			}
 			{
