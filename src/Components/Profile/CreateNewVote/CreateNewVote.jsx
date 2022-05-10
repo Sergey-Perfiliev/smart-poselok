@@ -28,7 +28,6 @@ const CreateNewVote = ({ token, currentVillage, createNewVoteMode, setCreateNewV
 	}
 
 	const handleSubmit = (e) => {
-		e.preventDefault();
 		const options = inputList.map(el => el = { description: el })
 		createVote(currentVillage.id, { topic: titleValue, options }, token)
 		setCreateNewVoteMode(false)
@@ -65,6 +64,7 @@ const CreateNewVote = ({ token, currentVillage, createNewVoteMode, setCreateNewV
 											value={input}
 											onChange={(e) => handleInputChange(e, i)}
 											autoFocus
+											required
 										/>
 										{inputList.length > 1 && <span className='delete-cross delete-cross-input' onClick={() => handleInputRemove(i)}>×</span>}
 									</div>
@@ -83,7 +83,6 @@ const CreateNewVote = ({ token, currentVillage, createNewVoteMode, setCreateNewV
 							))
 						}
 					</div>
-
 					<div className="popup-footer">
 						<button
 							type="submit"

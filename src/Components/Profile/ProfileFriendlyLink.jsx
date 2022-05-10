@@ -6,9 +6,10 @@ const ProfileFriendlyLink = (props) => {
 			e.preventDefault()
 			let copyText = document.getElementsByClassName('profile__friendly-link__url')[0].textContent
 			navigator.clipboard.writeText(copyText)
+			props.addNotification("SUCCESS", "Скопировано")
 		}
 		catch (error) {
-			console.log(error);
+			props.addNotification("SUCCESS", "Ошибка")
 		}
 	}
 

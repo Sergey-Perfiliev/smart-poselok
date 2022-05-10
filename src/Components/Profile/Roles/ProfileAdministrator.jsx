@@ -9,7 +9,22 @@ import ProfileNeighbours from '../ProfileNeighbours'
 import ProfileViewVillagers from '../ProfileViewVillagers'
 import ProfileVote from '../ProfileVote'
 
-const ProfileAdministrator = ({ token, email, vote, enabled, villages, streets, isVillager, neighbours, currentVillage, createVote }) => {
+const ProfileAdministrator = (props) => {
+	const {
+		token,
+		email,
+		vote,
+		enabled,
+		villages,
+		streets,
+		isVillager,
+		neighbours,
+		currentVillage,
+		createVote,
+		addNotification,
+		makeVote
+	} = props
+
 	const [createNewVoteMode, setCreateNewVoteMode] = useState(false)
 	const [createNewAreaMode, setCreateNewAreaMode] = useState(false)
 
@@ -17,8 +32,15 @@ const ProfileAdministrator = ({ token, email, vote, enabled, villages, streets, 
 		<>
 			<div className='profile-admin-container'>
 				<ProfileInfo email={email} />
-				{isVillager && <ProfileFriendlyLink />}
-				<ProfileVote vote={vote} enabled={enabled} />
+				{isVillager && <ProfileFriendlyLink addNotification={addNotification} />}
+				{
+					vote && <ProfileVote
+						vote={vote}
+						enabled={enabled}
+						makeVote={makeVote}
+						token={token}
+					/>
+				}
 			</div>
 
 			<div className='profile-admin-panel'>

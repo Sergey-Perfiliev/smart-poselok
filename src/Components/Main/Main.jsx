@@ -5,8 +5,8 @@ import { signOut } from '../../Redux/auth-reducer'
 import { getSelfProfile, setCurrentVillage } from '../../Redux/profile-reducer'
 import Profile from '../Profile/Profile'
 import { getVillages } from '../../Redux/village-reducer'
-import { createVote } from '../../Redux/vote-reducer'
-import { getCurrentVote } from '../../Redux/vote-reducer'
+import { createVote, getCurrentVote, makeVote } from '../../Redux/vote-reducer'
+import { addNotification } from '../../Redux/notification-reducer'
 
 const Main = (props) => {
 	React.useEffect(() => {
@@ -22,18 +22,7 @@ const Main = (props) => {
 						signOut={props.signOut}
 					/>
 					<Profile
-						profile={props.profile}
-						neighbours={props.neighbours}
-						vote={props.vote}
-						villages={props.villages}
-						streets={props.streets}
-						setNewVote={props.setNewVote}
-						getVillages={props.getVillages}
-						createVote={props.createVote}
-						token={props.token}
-						currentVillage={props.currentVillage}
-						setCurrentVillage={props.setCurrentVillage}
-						getCurrentVote={props.getCurrentVote}
+						{...props}
 					/>
 				</div >
 			}
@@ -57,5 +46,7 @@ export default connect(mapStateToProps, {
 	signOut,
 	createVote,
 	getCurrentVote,
-	setCurrentVillage
+	setCurrentVillage,
+	addNotification,
+	makeVote
 })(Main)

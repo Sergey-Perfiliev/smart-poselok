@@ -87,7 +87,8 @@ export const voteApi = {
 		)
 	},
 	vote(votingOptionId, token) {
-		return instance.post(`/village/voting_options/${votingOptionId}/vote`,
+		return instance.post(`/voting_option/${votingOptionId}/vote`,
+			{},
 			{ headers: { "Authorization": `Bearer ${token}` } }
 		)
 	}

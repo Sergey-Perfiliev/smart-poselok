@@ -2,15 +2,30 @@ import React from "react";
 import "./radio.scss";
 
 const RadioInput = (props) => {
-	const { selected, isActive, votedPercent, onChange, text, value, submitted, setSubmitted, enabled } = props;
+	const {
+		selected,
+		isActive,
+		votedPercent,
+		onChange,
+		text,
+		value,
+		submitted,
+		setSubmitted,
+		enabled,
+		makeVote,
+		token,
+		voteId
+	} = props;
+	console.log(props.submitted, enabled)
 
 	return (
 		<div
 			className={`modern-radio-container${enabled ? " modern-radio-container--cursor-pointer" : ''}${!isActive ? " modern-radio-container--active" : ''}`}
 			onClick={() => {
 				if (!submitted && enabled) {
+					makeVote(voteId, value, token)
 					setSubmitted(true)
-					onChange(value);
+					onChange(value)
 				}
 			}}
 		>

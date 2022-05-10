@@ -11,11 +11,10 @@ const DELETE_USER = 'DELETE_USER'
 let initialState = {
 	profile: null,
 	neighbours: [
-		{ id: 0, name: "Name" },
-		{ id: 15, name: "Alex" },
-		{ id: 151, name: "Ivan" },
-		{ id: 270, name: "Sergei" },
-		{ id: 986, name: "Antony" },
+		{ id: 15, name: "Александр" },
+		{ id: 151, name: "Иван" },
+		{ id: 270, name: "Сергей" },
+		{ id: 986, name: "Елена" },
 	],
 	currentVillage: null,
 	error: null,

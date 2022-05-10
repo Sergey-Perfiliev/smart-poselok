@@ -13,10 +13,8 @@ const CreateNewLandPlot = ({ getStreets, handleCreateLandPlot, currentVillage, s
 		onSubmit: (values) => {
 			//async call
 			handleCreateLandPlot(values.street.id, values.land_plot, token)
-			console.log(values.street.id, values.land_plot, token)
 		}
 	})
-	console.log(currentVillage, streets, getStreets)
 
 	return (
 		<form onSubmit={formik.handleSubmit}>

@@ -3,9 +3,13 @@ import RadioInput from './RadioInput';
 import './_vote.scss'
 
 const Vote = (props) => {
-	let { topic, status, options, voted } = props.vote
+	// console.log(props.vote)
+	let { id, topic, status, options, voted } = props.vote
+	let { makeVote, token } = props
+	
 	const [selected, setSelected] = useState(voted || null);
 	const [submitted, setSubmitted] = useState(!!voted || false)
+	// console.log("VOTED", voted, !!voted, props.vote)
 
 	let totalVotes = null;
 
@@ -30,6 +34,7 @@ const Vote = (props) => {
 	else voteClassName += ' vote-disabled'
 
 	if (props.isColorChange && props.enabled) voteClassName += ' vote-white'
+	// console.log(makeVote)
 
 	const optionList = props.vote && options.map(option =>
 		<RadioInput
@@ -43,6 +48,9 @@ const Vote = (props) => {
 			isActive={status === 'active'}
 			votedPercent={countVotesPercent(option.votes_number, totalVotes)}
 			key={option.id}
+			voteId={id}
+			makeVote={makeVote}
+			token={token}
 		/>
 	)
 

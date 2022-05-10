@@ -39,19 +39,17 @@ const Registration = (props) => {
 
 	const formik = useFormik({
 		initialValues: {
-			email: props.email || 'ser@gmail.com',
-			password: props.password || '',
-			firstName: props.firstName || '',
-			lastName: props.lastName || '',
-			patronymic: props.patronymic || '',
+			email: '',
+			password: '',
+			firstName: '',
+			lastName: '',
+			patronymic: '',
 			roles: [],
 		},
 		validationSchema: validationSchema,
 		onSubmit: (values, { setSubmitting }) => {
 			setSubmitting(true)
 			// async call
-			console.log(values.email, values.firstName, values.lastName, values.patronymic, 
-				values.password, landPlot.id, village.id, values.roles);
 			props.register(values.email, values.firstName, values.lastName, values.patronymic, 
 				values.password, landPlot.id, village.id, values.roles)
 			setSubmitting(false)

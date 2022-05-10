@@ -1,10 +1,11 @@
 import React from 'react'
+import ReactDOM from 'react-dom' 
 import { connect } from 'react-redux'
 import { addNotification, removeNotification } from '../../../Redux/notification-reducer'
 import Notification from './Notification'
 
 const NotificationProvider = (props) => {
-	return (
+	return ReactDOM.createPortal(
 		<div className='notification-wrapper'>
 			{props?.notifications?.map(note => {
 				return <Notification
@@ -13,7 +14,8 @@ const NotificationProvider = (props) => {
 					{...note}
 				/>
 			})}
-		</div>
+		</div>,
+		document.getElementById('notification-root')
 	)
 }
 

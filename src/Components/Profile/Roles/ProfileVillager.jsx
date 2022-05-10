@@ -4,13 +4,13 @@ import ProfileInfo from '../ProfileInfo'
 import ProfileNeighbours from '../ProfileNeighbours'
 import ProfileVote from '../ProfileVote'
 
-const ProfileVillager = ({ email, vote, neighbours, enabled }) => {
+const ProfileVillager = ({ email, vote, neighbours, enabled, makeVote, token }) => {
 	return (
 		<>
 			<div className='profile-villager-container'>
 				<ProfileInfo email={email} />
 				<ProfileFriendlyLink />
-				<ProfileVote vote={vote} enabled={enabled} />
+				<ProfileVote vote={vote} enabled={enabled} makeVote={makeVote} token={token} />
 			</div>
 
 			<ProfileNeighbours neighbours={neighbours} />

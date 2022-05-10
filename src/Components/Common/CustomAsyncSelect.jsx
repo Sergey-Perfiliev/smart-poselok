@@ -35,7 +35,6 @@ const CustomAsyncSelect = ({ data, value, onChange, placeholder = 'Выбери�
 		}
 		
 		query()
-		console.log(query)
 
 		if (active && data) {
 			setOptions([...data]);
