@@ -1,4 +1,4 @@
-@import '../../colors';
+@import '../../variables';
 
 .modern-radio-container {
   margin: 16px 0 0 0;
@@ -33,7 +33,7 @@
 		width: 16px;
     height: 16px;
     align-self: flex-end;
-    margin-right: 0;
+    margin-right: 8px;
 	}
 }
 
@@ -42,6 +42,7 @@
   flex-direction: column;
 
 	&.active {
+		flex-basis: 28%;
 		margin-right: 12px;
 	}
 }
@@ -132,4 +133,8 @@
 
 .result-border--bottom {
 	border-bottom: 2px solid $primary;
+}
+
+.radio-votesCount {
+	align-self: end;
 }

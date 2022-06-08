@@ -1,52 +1,56 @@
-@import '.././../colors';
+@import ".././../variables";
 
 .auth-container {
-	display: flex;
-	height: 100vh;
+  display: flex;
+  height: 100vh;
 }
 
 .auth {
-	padding: 24px 48px;
-	margin: auto;
-	width: 430px;
-	border: 2px solid $secondary;
-	border-radius: 4px;
+  padding: $base * 6 $base * 12;
+  margin: auto;
+  width: 430px;
+  border: calc($base/2) solid $secondary;
+  border-radius: $base;
 
-	&-title {
-		text-align: center;
-		color: $dark;
+  &-title {
+    text-align: center;
+    color: $dark;
     padding-bottom: 0;
-    padding-top: 16px;
-    font-size: 28px;
+    padding-top: $base * 4;
+    font-size: $fs-l;
     font-weight: 400;
     line-height: 1.3333;
     margin-bottom: 0;
     margin-top: 0;
     word-break: break-word;
-	}
+  }
 
-	&-form {
-		padding-top: 44px;
+  &-form {
+    padding-top: $base * 11;
 
-		.form-inputWrapper {
-			display: flex;
-			justify-content: space-between;
-			width: 100%;
-		}
+    .form-inputWrapper {
+      display: flex;
+      justify-content: space-between;
+      width: 100%;
+    }
 
-		.form-inputWrapper:not(:first-child) {
-			margin-top: 12px;
-		}
-	}
+    .form-inputWrapper:not(:first-child) {
+      margin-top: $base * 4;
+    }
+  }
 
-	&-error {
-		padding: 8px 0 0 8px;
-		color: $error;	
-	}
+  &-error {
+    padding: $base * 2 0 0 $base * 2;
+    color: $error;
+  }
+
+  @media (max-width: $breakpoint-xs-max) {
+    border: none;
+  }
 }
 
 .auth-buttons {
-	margin-top: 44px;
-	display: flex;
-	justify-content: space-between;
+  margin-top: $base * 11;
+  display: flex;
+  justify-content: space-between;
 }

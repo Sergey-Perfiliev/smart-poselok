@@ -14,13 +14,13 @@ const VoteReducer = (state = initialState, action) => {
 		case SET_VOTES:
 			return {
 				...state,
-				...action
+				votes: action.votes
 			}
 
 		case SET_CURRENT_VOTE:
 			return {
 				...state,
-				...action
+				currentVote: action.currentVote
 			}
 
 		default:
@@ -41,9 +41,9 @@ export const makeVote = (voteId, votingOptionId, token) => {
 		try {
 			let response = await voteApi.vote(votingOptionId, token)
 
-			// if (response.status === 200) {
-			// 	dispatch(setVotes(response.data))
-			// }
+			if (response.status === 200) {
+				dispatch(setVotes(response.data))
+			}
 		} catch (error) {
 			let errorMessage = "Произошла ошибка"
 			dispatch(addNotification("ERROR", errorMessage))
@@ -70,7 +70,6 @@ export const getCurrentVote = (villageId, token) => {
 	return async (dispatch) => {
 		try {
 			let response = await voteApi.getCurrentVote(villageId, token)
-
 			if (response.status === 200) {
 				dispatch(setCurrentVote(response.data))
 			}

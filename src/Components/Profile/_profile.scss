@@ -1,15 +1,44 @@
-@import "../../colors";
-@import "../../media-queries";
+@import "../../variables";
 
 .profile {
+  min-height: 92vh;
+
   &-variant {
     width: 270px;
-    margin-bottom: 24px;
+    margin: 24px 0;
   }
 
   &-content {
-    display: flex;
+		margin-top: $base*8;
+    display: grid;
+    grid-template-columns:
+      minmax(390px, 440px)
+      minmax(600px, 640px);
     justify-content: space-between;
+
+    @media (max-width: 1125px) {
+			margin-top: $base*4;
+      grid-template-columns:
+        minmax(375px, 390px)
+        minmax(450px, 560px);
+    }
+
+    @media (max-width: 796px) {
+			margin-top: $base*2;
+      grid-template-columns: minmax(360px, 580px);
+    }
+  }
+
+  .role-processing {
+    display: flex;
+  }
+
+  @media (max-width: 1125px) {
+    padding: 0 $base*8;
+  }
+
+  @media (max-width: 796px) {
+    padding: 0 $base * 2;
   }
 
   &-processing {
@@ -18,31 +47,34 @@
     flex-direction: column;
     align-items: center;
     margin-top: 240px;
+
+    h2 {
+      text-align: center;
+    }
   }
 
   &-villager-container {
-    max-width: 500px;
   }
 
   &-admin-container {
-    max-width: 440px;
     width: 100%;
   }
 
   &-admin-panel {
-    max-width: 320px;
     width: 100%;
   }
 
   &__info {
-    padding: 16px 32px;
+    padding: $base * 4 $base * 8;
+    margin-bottom: $base * 8;
     background-color: white;
-    height: 180px;
-    border-radius: 8px;
+    height: $base * 45;
+    border-radius: $base * 2;
     display: flex;
     align-items: center;
 
     &-icon {
+      flex-shrink: 0;
       width: 88px;
       height: 88px;
 
@@ -56,16 +88,12 @@
       flex-direction: column;
       justify-content: center;
 
-      mt-16 {
-        margin-top: 16px;
-      }
-
       & > div {
         display: flex;
         align-items: center;
 
         & > span {
-          margin-left: 16px;
+          margin-left: $base * 4;
           font-style: normal;
           font-weight: 400;
           font-size: 14px;
@@ -85,6 +113,9 @@
     }
 
     &-payment {
+			display: flex;
+      padding: 0;
+      margin: 0 0 4px;
       font-style: normal;
       font-weight: 400;
       font-size: 16px;
@@ -93,8 +124,8 @@
   }
 
   &__content-el {
-    padding: 24px 32px;
-    margin-top: 32px;
+    padding: $base * 6 $base * 8;
+    margin-bottom: $base * 8;
     background-color: $white;
     border-radius: 8px;
 
@@ -105,11 +136,24 @@
       font-style: normal;
       font-weight: 400;
       font-size: 24px;
-      line-height: 29px;
+      line-height: 1.5;
+    }
+
+    &__header {
+      margin-bottom: 24px;
     }
 
     &__content {
-      margin-top: 24px;
+    }
+
+    &-minimize {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+
+      .profile__content-el__header {
+        margin-bottom: 0px;
+      }
     }
   }
 
@@ -172,10 +216,14 @@
     margin-top: 0;
   }
 
+  &-villager-neighbours {
+    height: 75vh;
+		margin-bottom: $base * 8;
+  }
+
   &__neighbours {
-    max-width: 320px;
     width: 100%;
-    height: 280px;
+    height: 70vh;
     background-color: $white;
     border-radius: 8px;
 
@@ -203,6 +251,8 @@
         font-style: normal;
         font-weight: 500;
         font-size: 16px;
+        margin-left: 12px;
+        margin-right: 12px;
       }
 
       & > span {
@@ -213,7 +263,11 @@
       }
     }
 
-		// scroll bar
+    @media (max-width: 1125px) {
+      grid-column: 1;
+    }
+
+    // scroll bar
     &::-webkit-scrollbar {
       width: 8px;
     }
@@ -251,9 +305,28 @@
     background: $secondary;
     transition: 0.3s all ease;
   }
+
+  &--pending {
+    background-color: $pending;
+  }
 }
 
 .btn-new-vote,
 .btn-view-villagers {
   display: inline-block;
+}
+
+.btn-neighbours {
+	margin-left: auto;
+	margin-right: 12px;
+	font-size: 16px;
+	padding: 4px 8px;
+}
+
+.mt-16 {
+	margin-top: 16px;
+}
+
+.mb-8 {
+	margin-bottom: 8px;
 }

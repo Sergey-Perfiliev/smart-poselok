@@ -6,34 +6,26 @@ import { AuthAutocomplete } from '../Auth/AuthFields';
 const AsyncAutoComplete = ({ data, label, value, disabled, onChange, required = true, query, width = 100 }) => {
 	const [open, setOpen] = React.useState(false);
 	const [options, setOptions] = React.useState([]);
-	const loading = open && options.length === 0;
+	const loading = open && options.length === 0
 
 	React.useEffect(() => {
-    let active = true;
+		if (!loading) {
+			return undefined;
+		}
+		
+		query()
+	}, [loading]);
 
-    if (!loading) {
-      return undefined;
-    }
-
-    (() => {
-      query();
-
-      if (active && data) {
-        setOptions([...data]);
-      }
-    })();
-
-    return () => {
-      active = false;
-    };
-  }, [loading, data, query]);
+	React.useEffect(() => {
+		!!data && setOptions([...data])
+	}, [data])
 
 	React.useEffect(() => {
 		if (!open) {
 			setOptions([]);
 		}
 	}, [open]);
-
+	
 	return (
 		<AuthAutocomplete
 			sx={{ width: `${width}%` }}
@@ -51,6 +43,8 @@ const AsyncAutoComplete = ({ data, label, value, disabled, onChange, required = 
 			disabled={disabled}
 			loading={loading}
 			className='auth-input-custom'
+			value={value}
+			loadingText={'Загрузка...'}
 			renderInput={(params) => (
 				<TextField
 					{...params}

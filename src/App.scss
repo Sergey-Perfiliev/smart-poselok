@@ -1,5 +1,4 @@
-@import './colors';
-@import './media-queries';
+@import './variables';
 
 .btn {
 	cursor: pointer;
@@ -7,12 +6,16 @@
 	outline: none;
 }
 
-.profile, .votes, .villagers {
-	border-top: 1px solid white;
+.content-section {
 	background-color: $light;
-	padding: 1.5rem calc((100vw - 1200px) / 2 + 24px);
+}
+
+.profile, .votes, .villagers {
+	padding: $base * 3;
+	border-top: 1px solid white;
 	z-index: 10;
-	height: calc(100vh - 125px);
+	max-width: 1200px;
+	margin: 0 auto;
 }
 
 input {

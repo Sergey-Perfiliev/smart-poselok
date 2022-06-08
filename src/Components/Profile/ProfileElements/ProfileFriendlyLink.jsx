@@ -1,6 +1,7 @@
 import React from 'react'
 
 const ProfileFriendlyLink = (props) => {
+	// copy text from element by class to clipboard
 	const handleCopy = (e) => {
 		try {
 			e.preventDefault()
@@ -9,13 +10,15 @@ const ProfileFriendlyLink = (props) => {
 			props.addNotification("SUCCESS", "Скопировано")
 		}
 		catch (error) {
-			props.addNotification("SUCCESS", "Ошибка")
+			props.addNotification("ERROR", "Ошибка")
 		}
 	}
 
 	return (
 		<div className='profile__content-el profile__friendly-link'>
-			<h3 className='profile__content-el__title profile__friendly-link__title'>Ссылка</h3>
+			<div className='profile__content-el__header profile__friendly-link__header'>
+				<h3 className='profile__content-el__title profile__friendly-link__title'>Ссылка</h3>
+			</div>
 			<div className='profile__content-el__content profile__friendly-link__content'>
 				<p className='profile__friendly-link__url '>
 					https://smartposelok/invite/code=?gnauisxb

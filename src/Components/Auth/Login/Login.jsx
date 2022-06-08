@@ -12,7 +12,7 @@ const validationSchema = yup.object({
 	email: yup
 		.string()
 		.required()
-		.max(20)
+		.max(30)
 		.matches(/^[A-Z0-9._%+-]+@[A-Z0-9.-]+\.[A-Z]{2,}$/i, "Введите адрес электронной почты"),
 	password: yup
 		.string()
@@ -45,6 +45,7 @@ const Login = (props) => {
 						fullWidth
 						name="email"
 						label="Email"
+						type="email"
 						value={formik.values.email}
 						onChange={formik.handleChange}
 						error={Boolean(props.error) || (formik.touched.email && Boolean(formik.errors.email))}
@@ -68,8 +69,13 @@ const Login = (props) => {
 				</div>
 				{props.error && <div className='auth-error'>{props.error}</div>}
 				<div className='auth-buttons'>
-					<Link to={formik.isSubmitting ? '#' : '/registration'} className='btn btn-profile'>Создать аккаунт</Link>
-					<button className='btn btn-profile' type="submit" disabled={formik.isSubmitting}>
+					<Link to={formik.isSubmitting ? '#' : '/registration'}
+						className={`btn btn-profile ${!!formik.isSubmitting ? 'btn-profile--pending' : ''}`}>
+						Создать аккаунт
+					</Link>
+					<button className={`btn btn-profile ${!!formik.isSubmitting ? 'btn-profile--pending' : ''}`}
+						type="submit"
+						disabled={formik.isSubmitting}>
 						Войти
 					</button>
 				</div>

@@ -1,6 +1,6 @@
-import { Field, Form, Formik } from 'formik'
 import React from 'react'
 import Popup from 'reactjs-popup'
+import { Field, Form, Formik } from 'formik'
 
 const ChangeUserInfo = ({ changeUserInfoMode, setChangeUserInfoMode, user, changeVillagerInfo }) => {
 	const { email, last_name, first_name, patronymic } = user
@@ -14,7 +14,7 @@ const ChangeUserInfo = ({ changeUserInfoMode, setChangeUserInfoMode, user, chang
 				</div>
 				<Formik
 					initialValues={{
-						id: user.id,
+						id: user.id || '',
 						email: email,
 						last_name: last_name,
 						first_name: first_name,
@@ -29,7 +29,10 @@ const ChangeUserInfo = ({ changeUserInfoMode, setChangeUserInfoMode, user, chang
 					<Form>
 						<div className="popup-content">
 							<div className='popup-content__container'>
-								<h3>Информация</h3>
+								<h3 className='popup-content__container-title popup-content__create_area-title'>
+									Информация
+									<span onClick={() => setChangeUserInfoMode(false)} className='delete-cross delete-cross-title delete-cross-title__new-area'>×</span>
+								</h3>
 								<div className='input-wrapper'>
 									<Field name="email" placeholder="Email" type="email" className='popup-input' />
 								</div>

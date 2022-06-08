@@ -6,27 +6,9 @@ const SET_STREETS = 'SET_STREETS'
 const SET_LAND_PLOTS = 'SET_LAND_PLOTS'
 
 const initialState = {
-	villages: [],
-	streets: [],
-	land_plots: [],
-	villagers: [
-		{
-			id: 1,
-			email: "ivan@outlook.com",
-			last_name: 'Иолафь',
-			first_name: 'Иван',
-			patronymic: 'Иванович',
-			role: 'resident',
-		},
-		{
-			id: 5,
-			email: "sergey@rambler.com",
-			last_name: 'Иигфлаг',
-			first_name: 'Сергей',
-			patronymic: 'Потапович',
-			role: 'representative'
-		},
-	],
+	villages: null,
+	streets: null,
+	land_plots: null,
 }
 
 const VillageReducer = (state = initialState, action) => {
@@ -34,19 +16,19 @@ const VillageReducer = (state = initialState, action) => {
 		case SET_VILLAGES:
 			return {
 				...state,
-				...action
+				villages: action.villages
 			}
 
 		case SET_STREETS:
 			return {
 				...state,
-				...action
+				streets: action.streets
 			}
 
 		case SET_LAND_PLOTS:
 			return {
 				...state,
-				...action
+				land_plots: action.land_plots
 			}
 
 		default:
@@ -81,10 +63,10 @@ export const getVillages = () => {
 export const createVillage = (villageName, token) => {
 	return async (dispatch) => {
 		let response = await villageApi.createVillage(villageName, token)
-		let responseSelfProfile = await profileAPI.getProfile(token) 
+		let responseSelfProfile = await profileAPI.getProfile(token)
 
 		if (response.status === 200 && responseSelfProfile.status === 200) {
-		  dispatch(getSelfProfile(token))
+			dispatch(getSelfProfile(token))
 		}
 	}
 }

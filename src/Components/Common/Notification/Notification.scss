@@ -1,9 +1,9 @@
-@import '../../../colors.scss';
+@import '../../../variables.scss';
 
 .notification-wrapper {
 	padding: 4px;
   position: fixed;
-  top: 10px;
+  top: 20px;
   right: 10px;
   width: 240px;
 }

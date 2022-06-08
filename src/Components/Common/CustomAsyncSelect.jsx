@@ -1,6 +1,6 @@
 import React from 'react'
 import AsyncSelect from 'react-select';
-import colors from '../../colors.scss'
+import colors from '../../variables.scss'
 
 const customStyles = {
 	control: (provided, state) => ({

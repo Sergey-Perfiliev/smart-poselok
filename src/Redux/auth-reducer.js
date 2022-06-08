@@ -1,18 +1,20 @@
 import axios from "axios"
 import { authApi } from "../API/api"
 import { addNotification } from "./notification-reducer"
+import { setUserProfile } from "./profile-reducer"
 
 // action.types
 const SET_AUTH_USER_DATA = 'SET_AUTH_USER_DATA'
 const LOGIN_FAILED = 'LOGIN_FAILED'
 const REGISTER_FAILED = 'REGISTER_FAILED'
+const LOGOUT = 'LOGOUT'
 
 // enabled roles : resident, representative, admin, owner
 
 export let initialState = {
 	email: null || localStorage.getItem('email'),
 	userId: null || localStorage.getItem('userId'),
-	token: null || localStorage.getItem('token'),
+	token: null,
 	isAuth: false || localStorage.getItem('isAuth'),
 	loading: false,
 	loginError: null,
@@ -40,6 +42,12 @@ const AuthReducer = (state = initialState, action) => {
 				registerError: action.errorMessage
 			}
 
+		case LOGOUT:
+			return {
+				...state,
+
+			}
+
 		default:
 			return state
 	}
@@ -52,6 +60,10 @@ export const setAuthUserData = (email, userId, token, isAuth) => ({
 
 export const loginFailed = (errorMessage) => ({
 	type: LOGIN_FAILED, errorMessage
+})
+
+export const logoutAC = () => ({
+	type: LOGOUT
 })
 
 export const login = (email, password) => {
@@ -117,6 +129,7 @@ export const loginTest = (user) => {
 export const signOut = () => {
 	return async (dispatch) => {
 		dispatch(setAuthUserData(null, null, null, null))
+		dispatch(setUserProfile(null))
 	}
 }
 

@@ -13,17 +13,19 @@ import { PrivateRoute } from './HOC/PrivateRoute';
 import { connect } from 'react-redux';
 import 'normalize.css';
 import Votes from './Components/Votes/Votes';
-import Villagers from './Components/Villagers/Villagers';
 import Notifications from './Components/Common/Notification/Notifications';
+import HeaderContainer from './Components/Header/HeaderContainer';
+import Users from './Components/Users/Users';
 
 const App = (props) => {
 	return (
 		<>
 			<Notifications notifications={props.notifications} />
+			<HeaderContainer isAuth={props.isAuth} />
 			<Routes>
 				<Route exact path='/' element={<PrivateRoute isAuth={props.isAuth} component={Main} />} />
 				<Route exact path='/votes' element={<PrivateRoute isAuth={props.isAuth} component={Votes} />} />
-				<Route exact path='/villagers' element={<PrivateRoute isAuth={props.isAuth} component={Villagers} />} />
+				<Route exact path='/pending' element={<PrivateRoute isAuth={props.isAuth} component={Users} />} />
 				<Route exact path="/login" element={<Login isAuth={props.isAuth} />} />
 				<Route exact path="/registration" element={<Registration />} />
 			</Routes>

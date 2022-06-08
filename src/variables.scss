@@ -1,0 +1,56 @@
+// common
+
+$base: 4px;
+
+// break points
+
+$breakpoint-sm-min: 576px;
+$breakpoint-xs-max: $breakpoint-sm-min - 1px;
+$breakpoint-md-min: 768px;
+$breakpoint-sm-max: $breakpoint-md-min - 1px;
+$breakpoint-lg-min: 992px;
+$breakpoint-md-max: $breakpoint-lg-min - 1px;
+$breakpoint-xl-min: 1200px;
+$breakpoint-lg-max: $breakpoint-xl-min - 1px;
+$breakpoint-xxl-min: 1400px;
+$breakpoint-xl-max: $breakpoint-xxl-min - 1px;
+
+// font sizes
+
+$fs-xxs: 10px;
+$fs-xs: 12px;
+$fs-s: 15px;
+$fs-m: 18px;
+$fs-l: 28px;
+$fs-xl: 36px;
+$fs-xxl: 48px;
+
+// colors
+
+$primary: #00cc66;
+$secondary: #24b66d;
+
+$primary-darkTheme: #262144;
+$secondary-darkTheme: #36433a;
+
+$white: #ffffff;
+
+$light: #efefef;
+$dark: #1f1f1f;
+
+$light-icon: #efefef;
+$dark-icon: #a0a0a0;
+
+$scrollbar-track: #f8f8f8;
+$scrollbar-thumb: #c5c5c5;
+$scrollbar-thumb-hover: #a0a0a0;
+
+$pending: #7a7a7a;
+$error: #ff0000;
+
+:export {
+  primary: $primary;
+  secondary: $secondary;
+
+  light: $light;
+}

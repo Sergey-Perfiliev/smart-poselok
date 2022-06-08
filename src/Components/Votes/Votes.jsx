@@ -1,13 +1,14 @@
 import React from 'react'
 import { connect } from 'react-redux'
 import { signOut } from '../../Redux/auth-reducer'
-import { getVotes } from '../../Redux/vote-reducer'
-import Header from '../Header/Header'
+import { setVotes, getVotes } from '../../Redux/vote-reducer'
 import Vote from '../Vote/Vote'
 
 const Votes = (props) => {
 	React.useEffect(() => {
 		props.getVotes(props?.currentVillage?.id, props?.token)
+
+		return () => props.setVotes([])
 	}, [props.currentVillage])
 
 	const votes = props.votes
@@ -21,15 +22,9 @@ const Votes = (props) => {
 	)
 
 	return (
-		<>
-			<Header
-				email={props.email}
-				signOut={props.signOut}
-			/>
-			<div className='votes'>
-				{votesList}
-			</div>
-		</>
+		<div className='votes'>
+			{votesList}
+		</div>
 	)
 }
 
@@ -40,4 +35,4 @@ const mapStateToProps = (state) => ({
 	currentVillage: state.profile.currentVillage,
 })
 
-export default connect(mapStateToProps, { signOut, getVotes })(Votes)
+export default connect(mapStateToProps, { signOut, getVotes, setVotes })(Votes)

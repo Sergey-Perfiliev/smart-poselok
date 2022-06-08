@@ -1,19 +1,30 @@
 import React from 'react'
-import ProfileFriendlyLink from '../ProfileFriendlyLink'
-import ProfileInfo from '../ProfileInfo'
-import ProfileNeighbours from '../ProfileNeighbours'
-import ProfileVote from '../ProfileVote'
+import ProfileFriendlyLink from '../ProfileElements/ProfileFriendlyLink'
+import ProfileInfo from '../ProfileElements/ProfileInfo'
+import ProfileVote from '../ProfileElements/ProfileVote'
+import ProfileGates from '../ProfileElements/ProfileGates'
+import ProfileUsers from '../ProfileUsers'
 
-const ProfileVillager = ({ email, vote, neighbours, enabled, makeVote, token }) => {
+const ProfileVillager = ({ email, vote, neighbours, enabled, makeVote, openGates, token, addNotification }) => {
 	return (
 		<>
 			<div className='profile-villager-container'>
 				<ProfileInfo email={email} />
-				<ProfileFriendlyLink />
-				<ProfileVote vote={vote} enabled={enabled} makeVote={makeVote} token={token} />
+				<ProfileGates openGates={openGates} />
+				<ProfileFriendlyLink addNotification={addNotification} />
+				{
+					vote && <ProfileVote
+						vote={vote}
+						enabled={enabled}
+						makeVote={makeVote}
+						token={token}
+					/>
+				}
 			</div>
 
-			<ProfileNeighbours neighbours={neighbours} />
+			<div className='profile-villager-neighbours'>
+				<ProfileUsers users={neighbours} />
+			</div>
 		</>
 	)
 }

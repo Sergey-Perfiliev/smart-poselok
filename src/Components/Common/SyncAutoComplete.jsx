@@ -47,7 +47,7 @@ const SyncAutoComplete = ({ data, label, defaultValue, disableClearable = false,
 			options={options}
 			disabled={disabled}
 			loading={loading}
-			defaultValue={defaultValue}
+			// defaultValue={defaultValue}
 			className='auth-input-custom'
 			renderInput={(params) => (
 				<TextField

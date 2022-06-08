@@ -11,7 +11,38 @@ export const profileAPI = {
 	getProfile(token) {
 		return instance.get(`user/self`,
 			{ headers: { "Authorization": `Bearer ${token}` } })
-	}
+	},
+	getNeighbours(villageId, token) {
+		return instance.get(`/village/${villageId}/neighbors`,
+			{ headers: { "Authorization": `Bearer ${token}` } })
+	},
+	confirmPayment(landPlotId, token) {
+		return instance.post(`/land_plot/${landPlotId}/confirm_payment`,
+			{ headers: { "Authorization": `Bearer ${token}` } })
+	},
+	openGates(landPlotId, token) {
+		return instance.post(`/land_plot/${landPlotId}/open_gate`,
+			{ headers: { "Authorization": `Bearer ${token}` } })
+	},
+	getPendingAdmins(villageId, token) {
+		return instance.get(`village/${villageId}/pending_admin`,
+			{ headers: { "Authorization": `Bearer ${token}` } })
+	},
+	getPendingVillagers(villageId, token) {
+		return instance.get(`village/${villageId}/pending_villager`,
+			{ headers: { "Authorization": `Bearer ${token}` } })
+	},
+	acceptPendingAdmin(villageId, token) {
+		return instance.post(`village/${villageId}/pending_admin`,
+			{},
+			{ headers: { "Authorization": `Bearer ${token}` } })
+	},
+	acceptPendingVillager(pending_villager_id, accept, token) {
+		return instance.post(`/pending_villager/${pending_villager_id}/${!!accept ? 'accept' : 'cancel'}`,
+			{},
+			{ headers: { "Authorization": `Bearer ${token}` } }
+		)
+	},
 }
 
 export const authApi = {
@@ -29,6 +60,7 @@ export const authApi = {
 	},
 	pendingAdmin(villageId, token) {
 		return instance.post(`village/${villageId}/pending_admin`,
+			{},
 			{ headers: { "Authorization": `Bearer ${token}` } })
 	},
 	pendingVillager(villageId, payload, token) {
@@ -72,7 +104,7 @@ export const villageApi = {
 export const voteApi = {
 	createVote(villageId, vote, token) {
 		return instance.post(`/village/${villageId}/voting`,
-			{ vote },
+			{ ...vote },
 			{ headers: { "Authorization": `Bearer ${token}` } }
 		)
 	},

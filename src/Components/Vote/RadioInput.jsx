@@ -16,7 +16,6 @@ const RadioInput = (props) => {
 		token,
 		voteId
 	} = props;
-	console.log(props.submitted, enabled)
 
 	return (
 		<div
@@ -44,7 +43,9 @@ const RadioInput = (props) => {
 			}
 			<div style={{ width: `100%` }}>
 				<div className={`helper-text${!isActive ? " helper-text--active" : ""}`}>{text}</div>
-				{!isActive && <div className="result-border result-border--bottom" style={{ width: `${votedPercent}%` }}></div>}
+				{!isActive && <div className="result-border result-border--bottom" style={
+					{ width: `${votedPercent > 0 ? votedPercent : '5'}%` }
+				}></div>}
 			</div>
 		</div>
 	)

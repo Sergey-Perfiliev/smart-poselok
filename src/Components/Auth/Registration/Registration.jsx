@@ -48,10 +48,12 @@ const Registration = (props) => {
 		},
 		validationSchema: validationSchema,
 		onSubmit: (values, { setSubmitting }) => {
+			console.log(values.email, values.firstName, values.lastName, values.patronymic,
+				values.password, landPlot?.id, village?.id, values.roles)
 			setSubmitting(true)
 			// async call
-			props.register(values.email, values.firstName, values.lastName, values.patronymic, 
-				values.password, landPlot.id, village.id, values.roles)
+			props.register(values.email, values.firstName, values.lastName, values.patronymic,
+				values.password, landPlot?.id, village.id, values.roles)
 			setSubmitting(false)
 		},
 	})
@@ -72,19 +74,19 @@ const Registration = (props) => {
 			setDisabledValue('representative')
 		} else if (value.some(v => v === convertRole('representative'))) {
 			setDisabledValue('resident')
+		} else if (value.some(v => v === convertRole('admin'))) {
+			setDisabledValue('admin')
 		} else {
 			setDisabledValue(null)
 		}
 
 		// set values into a component A, B || A
-		setRoleName(
-			typeof value === 'string' ? value.split(',') : value
-		)
+		setRoleName(typeof value === 'string' ? value.split(',') : value)
 	}
 
 	if (props.isAuth)
 		return <Navigate to={"/"} />
-	
+
 	return (
 		<Auth title={'Регистрация'}>
 			<form className='auth-form' onSubmit={formik.handleSubmit}>
@@ -93,6 +95,7 @@ const Registration = (props) => {
 						fullWidth
 						name="email"
 						label="Email"
+						type="email"
 						value={formik.values.email}
 						onChange={formik.handleChange}
 						error={formik.touched.email && Boolean(formik.errors.email)}
@@ -144,7 +147,6 @@ const Registration = (props) => {
 						label="Отчество"
 						value={formik.values.patronymic}
 						onChange={formik.handleChange}
-						required
 					/>
 				</div>
 				<div className='form-inputWrapper'>
@@ -175,12 +177,34 @@ const Registration = (props) => {
 					</FormControl>
 				</div>
 				<div className='form-inputWrapper'>
-					{/* <CustomAsyncSelect data={villages} value={village} onChange={setVillage} query={() => props.getVillages()} /> */}
-					<AsyncAutoComplete data={villages} query={() => props.getVillages()} label={'Посёлок'} value={village} onChange={setVillage} disabled={!disabledValue} />
+					<AsyncAutoComplete
+						data={villages}
+						query={() => props.getVillages()}
+						label={'Посёлок'}
+						value={village}
+						onChange={setVillage}
+						disabled={!disabledValue}
+					/>
 				</div>
 				<div className='form-inputWrapper'>
-					<AsyncAutoComplete data={streets} query={() => props.getStreets(village?.id)} label={'Улица'} width='47' value={street} onChange={setStreet} disabled={!disabledValue || !village} />
-					<AsyncAutoComplete data={land_plots} query={() => props.getLandPlots(street?.id)} label={'Дом'} width='47' value={landPlot} onChange={setLandPlot} disabled={!disabledValue || !street} />
+					<AsyncAutoComplete
+						data={streets}
+						query={() => props.getStreets(village?.id)}
+						label={'Улица'}
+						width='47'
+						value={street}
+						onChange={setStreet}
+						disabled={!disabledValue || disabledValue === 'admin' || !village}
+					/>
+					<AsyncAutoComplete
+						data={land_plots}
+						query={() => props.getLandPlots(street?.id)}
+						label={'Дом'}
+						width='47'
+						value={landPlot}
+						onChange={setLandPlot}
+						disabled={!disabledValue || !street}
+					/>
 				</div>
 				{props.error && <div className='auth-error'>{props.error}</div>}
 				<div className='auth-buttons'>

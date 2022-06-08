@@ -43,15 +43,29 @@ export const AuthAutocomplete = styled(Autocomplete)({
 });
 
 export const AuthOutlinedInput = styled(OutlinedInput)({
-	'& .Mui-focused': {
-		borderColor: '#24b66d',
-	},
 	'& .MuiOutlinedInput-notchedOutline': {
 		borderColor: '#24b66d',
-		'&:hover': {
-			borderColor: '#24b66d',
-		},
+		color: 'black',
 	},
+	'&:hover .MuiOutlinedInput-notchedOutline': {
+		borderColor: '#24b66d',
+	},
+	'&.Mui-focused': {
+		color: 'black',
+		// css-1sumxir-MuiFormLabel-root-MuiInputLabel-root.Mui-focused
+	},
+	'&.Mui-focused .MuiOutlinedInput-notchedOutline': {
+		borderColor: '#24b66d !important',
+	},
+	// "& .notchedOutline": {
+	// 	borderColor: "green"
+	// },
+	// "&:hover .notchedOutline": {
+	// 	borderColor: "green"
+	// },
+	// "&$focused .notchedOutline": {
+	// 	borderColor: "green"
+	// }
 });
 
 export const AuthMenuItem = styled(MenuItem)({

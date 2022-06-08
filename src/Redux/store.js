@@ -3,6 +3,7 @@ import thunk from "redux-thunk";
 import AuthReducer from "./auth-reducer";
 import NotificationReducer from "./notification-reducer";
 import ProfileReducer from "./profile-reducer";
+import UsersReducer from "./users-reducer";
 import VillageReducer from "./village-reducer";
 import VoteReducer from "./vote-reducer";
 
@@ -12,7 +13,8 @@ let reducers = combineReducers({
 	profile: ProfileReducer,
 	village: VillageReducer,
 	notification: NotificationReducer,
-	vote: VoteReducer
+	vote: VoteReducer,
+	users: UsersReducer,
 })
 
 // store with redux dev tools

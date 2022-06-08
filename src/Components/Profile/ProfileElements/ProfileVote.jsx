@@ -1,6 +1,6 @@
 import React from 'react'
 import { Link } from 'react-router-dom'
-import Vote from '../Vote/Vote'
+import Vote from '../../Vote/Vote'
 
 const ProfileVote = ({ vote, enabled, makeVote, token }) => {
 	return (
