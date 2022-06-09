@@ -8,7 +8,8 @@ import {
 	setCurrentRole,
 	requestNeighbours,
 	confirmPayment,
-	openGates
+	openGates,
+	setNeighbours,
 } from '../../Redux/profile-reducer'
 import Profile from '../Profile/Profile'
 import { getVillages } from '../../Redux/village-reducer'
@@ -61,4 +62,5 @@ export default connect(mapStateToProps, {
 	requestNeighbours,
 	confirmPayment,
 	openGates,
+	setNeighbours
 })(Main)

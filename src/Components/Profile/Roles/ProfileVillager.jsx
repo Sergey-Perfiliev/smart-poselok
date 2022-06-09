@@ -5,11 +5,11 @@ import ProfileVote from '../ProfileElements/ProfileVote'
 import ProfileGates from '../ProfileElements/ProfileGates'
 import ProfileUsers from '../ProfileUsers'
 
-const ProfileVillager = ({ email, vote, neighbours, enabled, makeVote, openGates, token, addNotification }) => {
+const ProfileVillager = ({ email, first_name, vote, neighbours, enabled, makeVote, openGates, token, addNotification }) => {
 	return (
 		<>
 			<div className='profile-villager-container'>
-				<ProfileInfo email={email} />
+				<ProfileInfo first_name={first_name} />
 				<ProfileGates openGates={openGates} />
 				<ProfileFriendlyLink addNotification={addNotification} />
 				{

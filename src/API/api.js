@@ -33,8 +33,8 @@ export const profileAPI = {
 		return instance.get(`village/${villageId}/pending_villager`,
 			{ headers: { "Authorization": `Bearer ${token}` } })
 	},
-	acceptPendingAdmin(villageId, token) {
-		return instance.post(`village/${villageId}/pending_admin`,
+	acceptPendingAdmin(villageId, accept, token) {
+		return instance.post(`/pending_admin/${villageId}/${!!accept ? 'accept' : 'cancel'}`,
 			{},
 			{ headers: { "Authorization": `Bearer ${token}` } })
 	},
@@ -62,7 +62,8 @@ export const authApi = {
 	pendingAdmin(villageId, token) {
 		return instance.post(`village/${villageId}/pending_admin`,
 			{},
-			{ headers: { "Authorization": `Bearer ${token}` } })
+			{ headers: { "Authorization": `Bearer ${token}` } }
+		)
 	},
 	pendingVillager(villageId, payload, token) {
 		return instance.post(`village/${villageId}/pending_villager`,

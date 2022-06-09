@@ -12,15 +12,21 @@ const countVotesPercent = (val, total) => {
 		: percent.toFixed(0)
 }
 
+
+const convertTimeElement = (time) => {
+	return String.valueOf(time).length === 1
+		? `0${time}`
+		: time
+}
 const convertExpirationDate = (expDate) => {
 	const date = new Date(expDate)
-	return `до ${date.toLocaleDateString()} ${date.getHours()}:${date.getMinutes()}`
+	return `до ${date.toLocaleDateString()} ${convertTimeElement(date.getHours())}:${convertTimeElement(date.getMinutes())}`
 }
 
 const Vote = (props) => {
 	let { id, topic, status, options, voted } = props.vote
 	let { makeVote, token } = props
-	console.log(props.vote.expiration)
+
 	const [selected, setSelected] = useState(voted);
 	const [submitted, setSubmitted] = useState(!!voted)
 	const [totalVotes, setTotalVotes] = useState(null)

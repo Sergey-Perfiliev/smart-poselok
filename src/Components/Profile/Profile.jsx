@@ -23,9 +23,10 @@ const Profile = (props) => {
 		requestNeighbours,
 		confirmPayment,
 		openGates,
-		setCurrentVote
+		setCurrentVote,
+		setNeighbours
 	} = props
-	const { email, roles } = props.profile
+	const { email, first_name, roles } = props.profile
 
 	const [isVillager, setIsVillager] = useState(false)
 	const [voteEnabled, setVoteEnabled] = useState(false)
@@ -63,6 +64,8 @@ const Profile = (props) => {
 	useEffect(() => {
 		if (!!currentVillage?.id)
 			requestNeighbours(currentVillage.id, token)
+
+		return () => setNeighbours([])
 	}, [currentVillage, token])
 
 	//current villages from available for user
@@ -108,36 +111,36 @@ const Profile = (props) => {
 				}
 				{
 					(isAdmin || isOwner) && !!roles.length && <ProfileManager
-						email={email}
-						neighbours={neighbours}
-						enabled={voteEnabled}
-						vote={vote}
+						token={token}
+						first_name={first_name}
+						isOwner={isOwner}
 						isVillager={isVillager}
+						isAdmin={isAdmin}
+						neighbours={neighbours}
+						confirmPayment={confirmPayment}
+						vote={vote}
+						enabled={voteEnabled}
+						createVote={createVote}
+						makeVote={makeVote}
 						villages={villages}
 						streets={streets}
-						createVote={createVote}
 						currentVillage={currentVillage}
-						token={token}
-						addNotification={addNotification}
-						makeVote={makeVote}
-						isAdmin={isAdmin}
-						isOwner={isOwner}
 						setShowUsersData={setShowUsersData}
 						openGates={openGates}
-						confirmPayment={confirmPayment}
+						addNotification={addNotification}
 					/>
 				}
 				{
 					!isAdmin && !isOwner && !!roles.length && isVillager && <ProfileVillager
-						email={email}
-						neighbours={neighbours}
-						enabled={voteEnabled}
-						vote={vote}
-						currentVillage={currentVillage}
 						token={token}
-						addNotification={addNotification}
+						first_name={first_name}
+						neighbours={neighbours}
+						vote={vote}
+						enabled={voteEnabled}
 						makeVote={makeVote}
+						currentVillage={currentVillage}
 						openGates={openGates}
+						addNotification={addNotification}
 					/>
 				}
 			</div>

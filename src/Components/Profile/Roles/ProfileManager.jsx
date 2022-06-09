@@ -14,6 +14,7 @@ import ProfileUsers from '../ProfileUsers'
 const ProfileManager = ({
 	token,
 	email,
+	first_name,
 	vote,
 	enabled,
 	villages,
@@ -37,7 +38,7 @@ const ProfileManager = ({
 		<>
 			<div>
 				<div className='profile-admin-container'>
-					<ProfileInfo email={email} />
+					<ProfileInfo first_name={first_name} />
 					<ProfileGates openGates={openGates} />
 					{isVillager && <ProfileFriendlyLink addNotification={addNotification} />}
 					{

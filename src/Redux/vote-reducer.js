@@ -42,7 +42,8 @@ export const makeVote = (votingOptionId, token) => {
 			let response = await voteApi.vote(votingOptionId, token)
 
 			if (response.status === 200) {
-				dispatch(setVotes(response.data))
+				dispatch(addNotification("SUCCESS", 'Вы проголосовали'))
+				// dispatch(setVotes(response.data))
 			}
 		} catch (error) {
 			let errorMessage = "Произошла ошибка"

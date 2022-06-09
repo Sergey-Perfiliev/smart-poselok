@@ -3,6 +3,7 @@ import { Link } from 'react-router-dom'
 import Vote from '../../Vote/Vote'
 
 const ProfileVote = ({ vote, enabled, makeVote, token }) => {
+	console.log(vote, enabled)
 	return (
 		<>
 			<div className='profile__content-el profile__vote'>
