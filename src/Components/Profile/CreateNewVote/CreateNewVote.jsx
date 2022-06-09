@@ -18,8 +18,7 @@ const CreateNewVote = ({ token, currentVillage, createNewVoteMode, setCreateNewV
 	}
 
 	const handleDisabledButton = (title, inputs) => {
-		console.log(!!title, inputs.some(inputVal => !!inputVal))
-		!!title && inputs.some(inputVal => !!inputVal)
+		!!title && inputs.some(inputVal => !!inputVal) && inputs.length > 1
 			? setDisabled(false)
 			: setDisabled(true)
 	}

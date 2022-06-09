@@ -1,5 +1,9 @@
 @import './variables';
 
+html {
+  overflow-y: scroll;
+}
+
 .btn {
 	cursor: pointer;
 	border: none;

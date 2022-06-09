@@ -1,7 +1,7 @@
 import axios from "axios"
 import { authApi } from "../API/api"
 import { addNotification } from "./notification-reducer"
-import { setUserProfile } from "./profile-reducer"
+import { setCurrentVillage, setUserProfile } from "./profile-reducer"
 
 // action.types
 const SET_AUTH_USER_DATA = 'SET_AUTH_USER_DATA'
@@ -135,6 +135,8 @@ export const signOut = () => {
 	return async (dispatch) => {
 		dispatch(setAuthUserData(null, null, null, null))
 		dispatch(setUserProfile(null))
+		dispatch(setCurrentVillage(null))
+		window.localStorage.clear();
 	}
 }
 

@@ -7,16 +7,17 @@ const AsyncAutoComplete = ({ data, label, value, disabled, onChange, required = 
 	const [open, setOpen] = React.useState(false);
 	const [options, setOptions] = React.useState([]);
 	const loading = open && options.length === 0
-	console.log('input')
+
 	React.useEffect(() => {
 		if (!loading) {
 			return undefined;
 		}
-
+		console.log(query)
 		query()
 	}, [loading]);
 
 	React.useEffect(() => {
+		console.log('open')
 		!!data && setOptions([...data])
 	}, [data])
 

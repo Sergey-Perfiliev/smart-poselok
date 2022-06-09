@@ -4,6 +4,7 @@ import './_profile.scss'
 import ProfileVillager from './Roles/ProfileVillager'
 import AsyncAutoComplete from '../Common/SyncAutoComplete'
 import ProfileManager from './Roles/ProfileManager'
+import CustomAsyncSelect from '../Common/CustomAsyncSelect'
 
 const Profile = (props) => {
 	const { neighbours,
@@ -94,14 +95,11 @@ const Profile = (props) => {
 		<div className='profile'>
 			{
 				roles.length > 1 && <div className='profile-variant'>
-					<AsyncAutoComplete
+					<CustomAsyncSelect
 						data={availableVillages}
-						query={props.getVillages}
-						label='Посёлок'
 						value={currentVillage}
 						onChange={setCurrentVillage}
-						disabled={false}
-						required={false}
+						query={props.getVillages}
 					/>
 				</div>
 			}
