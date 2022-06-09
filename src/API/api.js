@@ -1,7 +1,7 @@
 import * as axios from 'axios'
 
 const instance = axios.create({
-	baseURL: 'http://45.93.135.160:80/',
+	baseURL: 'https://45.93.135.160:80/',
 })
 
 export const profileAPI = {
