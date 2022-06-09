@@ -14,7 +14,7 @@ const LOGOUT = 'LOGOUT'
 export let initialState = {
 	email: null || localStorage.getItem('email'),
 	userId: null || localStorage.getItem('userId'),
-	token: null,
+	token: null || localStorage.getItem('token'),
 	isAuth: false || localStorage.getItem('isAuth'),
 	loading: false,
 	loginError: null,
@@ -74,6 +74,11 @@ export const login = (email, password) => {
 			if (response.status === 200) {
 				dispatch(loginFailed(null))
 				dispatch(setAuthUserData(email, response.data.user_id, response.data.token, true))
+
+				localStorage.setItem('email', email)
+				localStorage.setItem('userId', response.data.user_id)
+				localStorage.setItem('token', response.data.token)
+				localStorage.setItem('isAuth', true)
 			}
 		} catch (error) {
 			let errorMessage = "Произошла ошибка"

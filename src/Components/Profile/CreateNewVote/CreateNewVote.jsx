@@ -5,6 +5,7 @@ import '../PopUp.scss'
 const CreateNewVote = ({ token, currentVillage, createNewVoteMode, setCreateNewVoteMode, createVote }) => {
 	const [titleValue, setTitleValue] = useState('')
 	const [inputList, setInputList] = useState([''])
+	const [disabled, setDisabled] = useState(true)
 
 	const handleInputAdd = () => {
 		setInputList([...inputList, ''])
@@ -16,15 +17,25 @@ const CreateNewVote = ({ token, currentVillage, createNewVoteMode, setCreateNewV
 		setInputList(list)
 	}
 
+	const handleDisabledButton = (title, inputs) => {
+		console.log(!!title, inputs.some(inputVal => !!inputVal))
+		!!title && inputs.some(inputVal => !!inputVal)
+			? setDisabled(false)
+			: setDisabled(true)
+	}
+
 	const handleInputChange = (e, i) => {
 		const { value } = e.target
 		const list = [...inputList]
 		list[i] = value
 		setInputList(list)
+		handleDisabledButton(titleValue, list)
 	}
 
 	const handleTitleValue = (e) => {
-		setTitleValue(e.target.value)
+		const { value } = e.target
+		setTitleValue(value)
+		handleDisabledButton(value, inputList)
 	}
 
 	const handleSubmit = (e) => {
@@ -48,7 +59,7 @@ const CreateNewVote = ({ token, currentVillage, createNewVoteMode, setCreateNewV
 					<div className='popup-content__container'>
 						<h3 className='popup-content__container-title'>Тема опроса<span onClick={closeModal} className='delete-cross delete-cross-title'>×</span></h3>
 						<div className='input-wrapper'>
-							<input type="text" className='popup-input' value={titleValue} onChange={e => handleTitleValue(e)} required />
+							<input name='createNewVoteTitle' type="text" className='popup-input' value={titleValue} onChange={e => handleTitleValue(e)} required />
 						</div>
 					</div>
 					<div className='popup-content__container'>
@@ -58,7 +69,7 @@ const CreateNewVote = ({ token, currentVillage, createNewVoteMode, setCreateNewV
 								<div className='input-container' key={i}>
 									<div className='input-wrapper'>
 										<input
-											name='inputValue'
+											name={`inputValue-${i}`}
 											type="text"
 											className='popup-input'
 											value={input}
@@ -86,7 +97,7 @@ const CreateNewVote = ({ token, currentVillage, createNewVoteMode, setCreateNewV
 					<div className="popup-footer">
 						<button
 							type="submit"
-							className="btn btn-profile btn-popup btn-popup--submit"
+							className={`btn btn-profile btn-popup btn-popup--submit ${disabled ? 'btn-profile--pending' : ''}`}
 							onClick={handleSubmit}
 						>Создать</button>
 					</div>
