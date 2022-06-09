@@ -21,7 +21,7 @@ const ProfileFriendlyLink = (props) => {
 			</div>
 			<div className='profile__content-el__content profile__friendly-link__content'>
 				<p className='profile__friendly-link__url '>
-					https://smartposelok/invite/code=?gnauisxb
+					https://smart-poselok.vercel.app/login
 				</p>
 				<button
 					className='btn btn-profile btn-friendly-link'
