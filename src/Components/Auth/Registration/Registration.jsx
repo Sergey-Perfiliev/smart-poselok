@@ -62,6 +62,25 @@ const Registration = (props) => {
 	const [street, setStreet] = React.useState(null)
 	const [landPlot, setLandPlot] = React.useState(null)
 	const [disabledValue, setDisabledValue] = React.useState(null)
+	
+	React.useEffect(() => {
+		setVillage(null)
+		setStreet(null)
+		setLandPlot(null)
+	}, [disabledValue])
+
+	React.useEffect(() => {
+		if (village === null) {
+			setStreet(null)
+			setLandPlot(null)
+		}
+	}, [village])
+
+	React.useEffect(() => {
+		if (street === null) {
+			setLandPlot(null)
+		}
+	}, [street])
 
 	const handleChange = (event) => {
 		// set values to formik
@@ -202,7 +221,7 @@ const Registration = (props) => {
 						width='47'
 						value={landPlot}
 						onChange={setLandPlot}
-						disabled={!disabledValue || !street}
+						disabled={!disabledValue || disabledValue === 'admin' || !street}
 					/>
 				</div>
 				{props.error && <div className='auth-error'>{props.error}</div>}
