@@ -56,7 +56,7 @@ const ProfileReducer = (state = initialState, action) => {
 		case UPDATE_USER_STATUS:
 			return {
 				...state,
-				neighbours: state.profile.neighbours.map(n => {
+				neighbours: state.neighbours.map(n => {
 					if (n.user_id === action.payload.id)
 						return { ...n, status: action.payload.status }
 					return n
@@ -158,7 +158,7 @@ export const confirmPayment = (landPlotId, userId, token) => {
 		let response = await profileAPI.confirmPayment(landPlotId, token)
 
 		if (response.status === 200) {
-			dispatch(setStatus(userId, response.data.status))
+			dispatch(setStatus(userId, response.data))
 		}
 	}
 }
@@ -168,7 +168,7 @@ export const openGates = (landPlotId, token) => {
 		// let response = await profileAPI.openGates(landPlotId, token)
 
 		// if (response.status === 200)
-			dispatch(addNotification("SUCCESS", 'Ворота открываютсяe'))
+		dispatch(addNotification("SUCCESS", 'Ворота открываются'))
 	}
 }
 

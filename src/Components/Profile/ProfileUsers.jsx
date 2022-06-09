@@ -54,7 +54,7 @@ const UserEl = ({ user, isAdmin, confirmPayment, token }) => {
 							: null
 			}
 			{
-				isAdmin && user.status === 'dishonest' && <button
+				isAdmin && (user.status === 'dishonest' || user.status === 'careless') && <button
 					className='btn btn-profile btn-neighbours'
 					onClick={() => confirmPayment(user.land_plot_id, user.user_id, token)}
 				>Оплата</button>

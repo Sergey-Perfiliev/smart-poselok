@@ -22,7 +22,8 @@ const Profile = (props) => {
 		setShowUsersData,
 		requestNeighbours,
 		confirmPayment,
-		openGates
+		openGates,
+		setCurrentVote
 	} = props
 	const { email, roles } = props.profile
 
@@ -82,6 +83,8 @@ const Profile = (props) => {
 		if (!!currentVillage?.id && isVillager && token) {
 			getCurrentVote(currentVillage.id, token)
 		}
+
+		return () => setCurrentVote(null)
 	}, [currentVillage, isVillager, token])
 
 	return (

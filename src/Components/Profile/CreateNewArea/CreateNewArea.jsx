@@ -18,8 +18,8 @@ const CreateNewArea = ({
 	const [createStreetMode, setCreateStreetMode] = React.useState(false)
 	const [createLandPlotMode, setCreateLandPlotMode] = React.useState(false)
 
-	const handleCreateVillage = (villageName, token) => {
-		createVillage(villageName, token)
+	const handleCreateVillage = (villageName, phoneNumber, token) => {
+		createVillage(villageName, phoneNumber, token)
 		setCreateVillageMode(false)
 	}
 
@@ -34,7 +34,6 @@ const CreateNewArea = ({
 	}
 
 	const closeModal = () => setCreateNewAreaMode(false)
-	console.log(currentVillage, streets, getStreets, token)
 
 	return (
 		<Popup open={createNewAreaMode} onClose={() => setCreateNewAreaMode(false)} >

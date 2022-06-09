@@ -1,16 +1,18 @@
 import { useFormik } from 'formik'
 import React from 'react'
+import PhoneInput from 'react-phone-number-input'
+import 'react-phone-number-input/style.css'
 
 const CreateNewVillage = ({ handleCreateVillage, setCreateVillageMode, token }) => {
-	console.log(token)
+	const [phoneValue, setPhoneValue] = React.useState('')
+
 	const formik = useFormik({
 		initialValues: {
 			village: '',
 		},
 		onSubmit: (values) => {
 			//async call
-			handleCreateVillage(values.village, token)
-			console.log(values)
+			handleCreateVillage(values.village, phoneValue, token)
 		}
 	})
 
@@ -30,6 +32,17 @@ const CreateNewVillage = ({ handleCreateVillage, setCreateVillageMode, token }) 
 					className='popup-input'
 					autoFocus
 					required
+				/>
+			</div>
+			<div className='input-wrapper'>
+				<PhoneInput
+					style={{ border: 'none' }}
+					className='popup-input'
+					international
+					countryCallingCodeEditable={false}
+					defaultCountry="RU"
+					onChange={setPhoneValue}
+					value={phoneValue}
 				/>
 			</div>
 			<button type='submit' className='btn btn-profile btn-popup btn-popup--submit'>Создать</button>

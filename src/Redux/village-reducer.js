@@ -60,10 +60,11 @@ export const getVillages = () => {
 	}
 }
 
-export const createVillage = (villageName, token) => {
+export const createVillage = (villageName, phoneNumber, token) => {
 	return async (dispatch) => {
-		let response = await villageApi.createVillage(villageName, token)
+		let response = await villageApi.createVillage(villageName, phoneNumber, token)
 		let responseSelfProfile = await profileAPI.getProfile(token)
+		getVillages()
 
 		if (response.status === 200 && responseSelfProfile.status === 200) {
 			dispatch(getSelfProfile(token))

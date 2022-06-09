@@ -1,7 +1,7 @@
 import React from 'react'
 import { connect } from 'react-redux'
 import { signOut } from '../../Redux/auth-reducer'
-import { setVotes, getVotes } from '../../Redux/vote-reducer'
+import { setVotes, getVotes, makeVote } from '../../Redux/vote-reducer'
 import Vote from '../Vote/Vote'
 
 const Votes = (props) => {
@@ -16,14 +16,18 @@ const Votes = (props) => {
 		<Vote
 			vote={vote}
 			isColorChange={true}
-			enabled={false}
+			enabled={!!props.currentRole?.villager && vote.status === 'active'}
 			key={vote.id}
+			makeVote={props.makeVote}
+			token={props.token}
 		/>
 	)
 
 	return (
 		<div className='votes'>
-			{votesList}
+			{votesList?.length > 0
+				? votesList.reverse()
+				: <h2 style={{ fontWeight: '400', marginLeft: '24px' }}>В данном посёлке ещё не проводились голосования.</h2>}
 		</div>
 	)
 }
@@ -33,6 +37,7 @@ const mapStateToProps = (state) => ({
 	email: state.auth.email,
 	votes: state.vote.votes,
 	currentVillage: state.profile.currentVillage,
+	currentRole: state.profile.currentRole
 })
 
-export default connect(mapStateToProps, { signOut, getVotes, setVotes })(Votes)
+export default connect(mapStateToProps, { signOut, getVotes, setVotes, makeVote })(Votes)

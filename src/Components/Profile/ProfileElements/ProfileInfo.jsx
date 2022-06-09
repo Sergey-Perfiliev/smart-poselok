@@ -19,7 +19,7 @@ const ProfileInfo = ({ email, isShowPayed = true }) => {
 					Статус оплаты:
 					<CheckCircleIcon fontSize='small' style={{ color: '#00cc66' }} />
 				</h4>
-				{isShowPayed && <h4 className='profile__info-payment'>Последняя оплата: 19.04.2022</h4>}
+				{/* {isShowPayed && <h4 className='profile__info-payment'>Последняя оплата: 19.04.2022</h4>} */}
 			</div>
 		</div>
 	)

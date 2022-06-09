@@ -8,13 +8,12 @@ const RadioInput = (props) => {
 		votedPercent,
 		onChange,
 		text,
-		value,
+		optionId,
 		submitted,
 		setSubmitted,
 		enabled,
 		makeVote,
 		token,
-		voteId
 	} = props;
 
 	return (
@@ -22,23 +21,23 @@ const RadioInput = (props) => {
 			className={`modern-radio-container${enabled ? " modern-radio-container--cursor-pointer" : ''}${!isActive ? " modern-radio-container--active" : ''}`}
 			onClick={() => {
 				if (!submitted && enabled) {
-					makeVote(voteId, value, token)
+					makeVote(optionId, token)
 					setSubmitted(true)
-					onChange(value)
+					onChange(optionId)
 				}
 			}}
 		>
 			{
 				!isActive && <div className="radio-container active">
 					<div className='radio-votesCount'>{votedPercent}%</div>
-					<div className={`radio-outer-circle ${value === selected ? "selected" : "unselected"} active`} >
-						<div className={`radio-inner-mark ${value === selected ? "selected-circle" : "unselected-circle"} active`} />
+					<div className={`radio-outer-circle ${optionId === selected ? "selected" : "unselected"} active`} >
+						<div className={`radio-inner-mark ${optionId === selected ? "selected-circle" : "unselected-circle"} active`} />
 					</div>
 				</div>
 			}
 			{
-				isActive && <div className={`radio-outer-circle ${value === selected ? "selected" : "unselected"}`} >
-					<div className={`radio-inner-mark ${value === selected ? "selected-circle" : "unselected-circle"}`} />
+				isActive && <div className={`radio-outer-circle ${optionId === selected ? "selected" : "unselected"}`} >
+					<div className={`radio-inner-mark ${optionId === selected ? "selected-circle" : "unselected-circle"}`} />
 				</div>
 			}
 			<div style={{ width: `100%` }}>

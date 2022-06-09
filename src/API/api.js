@@ -18,6 +18,7 @@ export const profileAPI = {
 	},
 	confirmPayment(landPlotId, token) {
 		return instance.post(`/land_plot/${landPlotId}/confirm_payment`,
+			{},
 			{ headers: { "Authorization": `Bearer ${token}` } })
 	},
 	openGates(landPlotId, token) {
@@ -81,9 +82,9 @@ export const villageApi = {
 	getLandPlots(street_id) {
 		return instance.get(`/street/${street_id}/land_plot`)
 	},
-	createVillage(name, token) {
+	createVillage(name, gate_number, token) {
 		return instance.post(`/village`,
-			{ name },
+			{ name, gate_number },
 			{ headers: { "Authorization": `Bearer ${token}` } }
 		)
 	},

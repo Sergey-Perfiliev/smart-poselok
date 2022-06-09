@@ -12,7 +12,7 @@ import {
 } from '../../Redux/profile-reducer'
 import Profile from '../Profile/Profile'
 import { getVillages } from '../../Redux/village-reducer'
-import { createVote, getCurrentVote, makeVote } from '../../Redux/vote-reducer'
+import { createVote, getCurrentVote, makeVote, setCurrentVote } from '../../Redux/vote-reducer'
 import { addNotification } from '../../Redux/notification-reducer'
 import { setShowUsersData } from '../../Redux/users-reducer'
 
@@ -52,6 +52,7 @@ export default connect(mapStateToProps, {
 	signOut,
 	createVote,
 	getCurrentVote,
+	setCurrentVote,
 	setCurrentVillage,
 	setCurrentRole,
 	addNotification,
@@ -59,5 +60,5 @@ export default connect(mapStateToProps, {
 	setShowUsersData,
 	requestNeighbours,
 	confirmPayment,
-	openGates
+	openGates,
 })(Main)

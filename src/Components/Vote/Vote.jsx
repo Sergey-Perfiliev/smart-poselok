@@ -12,16 +12,22 @@ const countVotesPercent = (val, total) => {
 		: percent.toFixed(0)
 }
 
+const convertExpirationDate = (expDate) => {
+	const date = new Date(expDate)
+	return `до ${date.toLocaleDateString()} ${date.getHours()}:${date.getMinutes()}`
+}
+
 const Vote = (props) => {
 	let { id, topic, status, options, voted } = props.vote
 	let { makeVote, token } = props
-
+	console.log(props.vote.expiration)
 	const [selected, setSelected] = useState(voted);
 	const [submitted, setSubmitted] = useState(!!voted)
 	const [totalVotes, setTotalVotes] = useState(null)
 
 	let voteStatus = status === 'active'
 
+	// count votes if status finished
 	React.useEffect(() => {
 		if (status === 'finished') {
 			setTotalVotes(
@@ -33,8 +39,9 @@ const Vote = (props) => {
 
 	}, [status, options])
 
+	// generate vote class
 	let voteClassName = 'vote'
-	// console.log(props.enabled, !props.vote?.voted)
+
 	if (props.enabled && !props.vote?.voted) voteClassName += ' vote-enabled'
 	else voteClassName += ' vote-disabled'
 
@@ -42,13 +49,13 @@ const Vote = (props) => {
 
 	const optionList = props.vote && options.map(option =>
 		<RadioInput
-			value={option.id}
+			optionId={option.id}
 			text={option.description}
 			selected={selected}
 			onChange={setSelected}
 			submitted={submitted}
 			setSubmitted={setSubmitted}
-			enabled={props.enabled && selected}
+			enabled={props.enabled && !selected}
 			isActive={voteStatus}
 			votedPercent={countVotesPercent(option.votes_number, totalVotes)}
 			key={option.id}
@@ -61,7 +68,14 @@ const Vote = (props) => {
 	return (
 		<div className={voteClassName}>
 			<h4 className='vote-title'>{topic}</h4>
-			{optionList}
+			<div className='vote-content'>
+				<div className='vote-options'>
+					{optionList}
+				</div>
+				<div className='vote-expiration-date'>
+					{convertExpirationDate(props.vote.expiration)}
+				</div>
+			</div>
 		</div>
 	)
 }

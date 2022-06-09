@@ -7,12 +7,12 @@ const AsyncAutoComplete = ({ data, label, value, disabled, onChange, required = 
 	const [open, setOpen] = React.useState(false);
 	const [options, setOptions] = React.useState([]);
 	const loading = open && options.length === 0
-
+	console.log('input')
 	React.useEffect(() => {
 		if (!loading) {
 			return undefined;
 		}
-		
+
 		query()
 	}, [loading]);
 
@@ -25,17 +25,13 @@ const AsyncAutoComplete = ({ data, label, value, disabled, onChange, required = 
 			setOptions([]);
 		}
 	}, [open]);
-	
+
 	return (
 		<AuthAutocomplete
 			sx={{ width: `${width}%` }}
 			open={open}
-			onOpen={() => {
-				setOpen(true);
-			}}
-			onClose={() => {
-				setOpen(false);
-			}}
+			onOpen={() => setOpen(true)}
+			onClose={() => setOpen(false)}
 			isOptionEqualToValue={(option, value) => option.name === value.name}
 			getOptionLabel={(option) => option.name}
 			onChange={(event, values) => onChange(values)}

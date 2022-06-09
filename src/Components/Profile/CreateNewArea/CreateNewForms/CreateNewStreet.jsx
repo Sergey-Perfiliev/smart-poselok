@@ -9,7 +9,6 @@ const CreateNewStreet = ({ handleCreateStreet, currentVillage, setCreateStreetMo
 		onSubmit: (values) => {
 			//async call
 			handleCreateStreet(currentVillage.id, values.street, token)
-			console.log(values, currentVillage)
 		}
 	})
 

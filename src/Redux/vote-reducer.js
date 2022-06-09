@@ -36,7 +36,7 @@ export const setCurrentVote = (currentVote) => ({
 	type: SET_CURRENT_VOTE, currentVote
 })
 
-export const makeVote = (voteId, votingOptionId, token) => {
+export const makeVote = (votingOptionId, token) => {
 	return async (dispatch) => {
 		try {
 			let response = await voteApi.vote(votingOptionId, token)
@@ -74,8 +74,8 @@ export const getCurrentVote = (villageId, token) => {
 				dispatch(setCurrentVote(response.data))
 			}
 		} catch (error) {
-			let errorMessage = "Произошла ошибка"
-			dispatch(addNotification("ERROR", errorMessage))
+			// let errorMessage = "Произошла ошибка"
+			// dispatch(addNotification("ERROR", errorMessage))
 		}
 	}
 }

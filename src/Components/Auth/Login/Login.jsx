@@ -12,7 +12,6 @@ const validationSchema = yup.object({
 	email: yup
 		.string()
 		.required()
-		.max(30)
 		.matches(/^[A-Z0-9._%+-]+@[A-Z0-9.-]+\.[A-Z]{2,}$/i, "Введите адрес электронной почты"),
 	password: yup
 		.string()

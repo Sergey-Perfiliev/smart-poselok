@@ -6,6 +6,7 @@
 	border-radius: 4px;
 	padding: 16px 32px;
 	max-width: 380px;
+	position: relative;
 
 	&-enabled {
 		background-color: $light;
@@ -16,7 +17,7 @@
 	}
 
 	&-white {
-		background-color: white;
+		background-color: #f4f4f4;
 	}
 
 	&-title {
@@ -57,6 +58,14 @@
 				line-height: 19px;
 			}
 		}
+	}
+
+	&-expiration-date {
+		position: absolute;
+    margin-left: auto;
+    font-size: 14px;
+    right: 8px;
+		bottom: 4px;
 	}
 }
 
